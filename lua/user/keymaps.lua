@@ -40,7 +40,7 @@ keymap("n", "<leader>fg", "<CMD>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fb", "<CMD>Telescope buffers<CR>", opts)
 
 -- LSP
-keymap("n", "<leader>lf", "<CMD>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+keymap("n", "<leader>lf", "<CMD>lua vim.lsp.buf.formatting()<CR>", opts)
 -- Visual --
 -- Move text up and down
 -- keymap("v", "<A-j>", ":m .+1<CR>==", opts)

@@ -51,16 +51,27 @@ return packer.startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+
+  -- completion plugins
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua" -- Neovim LUA completion
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
   use "hrsh7th/cmp-cmdline"
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+
+  -- LSP
   use "williamboman/nvim-lsp-installer"
   use "neovim/nvim-lspconfig"
-  use "L3MON4D3/LuaSnip"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linter
+  use "b0o/SchemaStore.nvim"
+
+  -- Java
+  use "mfussenegger/nvim-jdtls"
+
+  -- Snippets
+  use "L3MON4D3/LuaSnip"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
