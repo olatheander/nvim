@@ -23,13 +23,14 @@ local check_backspace = function()
 end
 
 local icons = require "user.icons"
-
 local kind_icons = icons.kind
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
 vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
+
+local lspkind = require('lspkind')
 
 cmp.setup {
   snippet = {
@@ -86,41 +87,17 @@ cmp.setup {
     }),
   },
   formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
-      -- Kind icons
-      vim_item.kind = kind_icons[vim_item.kind]
+    format = lspkind.cmp_format({
+      mode = 'symbol_text', -- show only symbol annotations
+      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      preset = "codicons",
 
-      if entry.source.name == "cmp_tabnine" then
-        vim_item.kind = icons.misc.Robot
-        vim_item.kind_hl_group = "CmpItemKindTabnine"
+      -- The function below will be called before any actual modifications from lspkind
+      -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+      before = function(entry, vim_item)
+        return vim_item
       end
-      if entry.source.name == "copilot" then
-        vim_item.kind = icons.git.Octoface
-        vim_item.kind_hl_group = "CmpItemKindCopilot"
-      end
-
-      if entry.source.name == "emoji" then
-        vim_item.kind = icons.misc.Smiley
-        vim_item.kind_hl_group = "CmpItemKindEmoji"
-      end
-
-      if entry.source.name == "crates" then
-        vim_item.kind = icons.misc.Package
-        vim_item.kind_hl_group = "CmpItemKindCrate"
-      end
-
-      -- NOTE: order matters
-      vim_item.menu = ({
-        nvim_lsp = "",
-        nvim_lua = "",
-        luasnip = "",
-        buffer = "",
-        path = "",
-        emoji = "",
-      })[entry.source.name]
-      return vim_item
-    end,
+    })
   },
   sources = {
     { name = "crates", group_index = 1 },
