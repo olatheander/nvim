@@ -52,6 +52,8 @@ return packer.startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
+	-- Keybinding
+	use("folke/which-key.nvim")
 
 	-- completion plugins
 	use("hrsh7th/nvim-cmp")
