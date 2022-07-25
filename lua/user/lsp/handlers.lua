@@ -78,43 +78,15 @@ local function attach_navic(client, bufnr)
 	navic.attach(client, bufnr)
 end
 
-local function lsp_keymaps(bufnr)
-	local opts = { noremap = true, silent = true }
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	--  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	--  vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	--	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	--  vim.api.nvim_buf_set_keymap(bufnr, "n", "<M-f>", "<cmd>Format<cr>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "<M-a>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "<M-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>df", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	--	vim.api.nvim_buf_set_keymap(
-	--		bufnr,
-	--		"n",
-	--		"<leader>dk",
-	--		'<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
-	--		opts
-	--	)
-	--	vim.api.nvim_buf_set_keymap(
-	--		bufnr,
-	--		"n",
-	--		"<leader>dj",
-	--		'<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
-	--		opts
-	--	)
-	--	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-end
-
 M.on_attach = function(client, bufnr)
-	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
 	attach_navic(client, bufnr)
+
+	-- setup formatting
+	local ok, lsp_format = pcall(require, "lsp-format")
+	if ok then
+		lsp_format.on_attach(client)
+	end
 
 	-- if client.server_capabilities.inlayHintProvider then
 	-- for tsserver
@@ -135,30 +107,33 @@ M.on_attach = function(client, bufnr)
 			require("jdtls.dap").setup_dap_main_class_configs()
 		end
 	end
+
+	--	if client.name == "sumneko_lua" then
+	--	end
 end
 
-function M.enable_format_on_save()
-	vim.cmd([[
-    augroup format_on_save
-      autocmd! 
-      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true }) 
-    augroup end
-  ]])
-	vim.notify("Enabled format on save")
-end
+--function M.enable_format_on_save()
+--	vim.cmd([[
+--    augroup format_on_save
+--      autocmd!
+--      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true })
+--    augroup end
+--  ]])
+--	vim.notify("Enabled format on save")
+--end
 
-function M.disable_format_on_save()
-	M.remove_augroup("format_on_save")
-	vim.notify("Disabled format on save")
-end
+--function M.disable_format_on_save()
+--	M.remove_augroup("format_on_save")
+--	vim.notify("Disabled format on save")
+--end
 
-function M.toggle_format_on_save()
-	if vim.fn.exists("#format_on_save#BufWritePre") == 0 then
-		M.enable_format_on_save()
-	else
-		M.disable_format_on_save()
-	end
-end
+--function M.toggle_format_on_save()
+--	if vim.fn.exists("#format_on_save#BufWritePre") == 0 then
+--		M.enable_format_on_save()
+--	else
+--		M.disable_format_on_save()
+--	end
+--end
 
 function M.remove_augroup(name)
 	if vim.fn.exists("#" .. name) == 1 then
@@ -166,6 +141,6 @@ function M.remove_augroup(name)
 	end
 end
 
-vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]])
+--vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]])
 
 return M

@@ -89,6 +89,16 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linter
 	use("b0o/SchemaStore.nvim")
+	use({
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+	})
+	use({
+		"lukas-reineke/lsp-format.nvim",
+		config = function()
+			require("lsp-format").setup({})
+		end,
+	})
 
 	-- DAP
 	use("mfussenegger/nvim-dap")
