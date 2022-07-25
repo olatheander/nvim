@@ -277,6 +277,7 @@ local mappings = {
 			"<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
 			"Prev Diagnostic",
 		},
+		K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
 		v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		o = { "<cmd>SymbolsOutline<cr>", "Outline" },
@@ -292,6 +293,16 @@ local mappings = {
 		u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
 	},
 
+	n = {
+		name = "Code Navigation",
+		d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+		D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+		I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
+		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+		f = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float" },
+		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature" },
+		q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Loc List" },
+	},
 	-- s = {
 	--   name = "Surround",
 	--   ["."] = { "<cmd>lua require('surround').repeat_last()<cr>", "Repeat" },
