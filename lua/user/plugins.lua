@@ -16,12 +16,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+--vim.cmd([[
+--  augroup packer_user_config
+--    autocmd!
+--    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--  augroup end
+--]])
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -52,6 +52,14 @@ return packer.startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "v2.*",
+		config = function()
+			require("toggleterm").setup()
+		end,
+	})
+
 	-- Keybinding
 	use("folke/which-key.nvim")
 
@@ -69,7 +77,20 @@ return packer.startup(function(use)
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup()
+			require("Comment").setup({
+				mappings = {
+					---Operator-pending mapping
+					---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
+					---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+					basic = false,
+					---Extra mapping
+					---Includes `gco`, `gcO`, `gcA`
+					extra = false,
+					---Extended mapping
+					---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+					extended = false,
+				},
+			})
 		end,
 	})
 	use({
@@ -104,6 +125,16 @@ return packer.startup(function(use)
 	use("mfussenegger/nvim-dap")
 	use("mfussenegger/nvim-dap-python")
 	use("rcarriga/nvim-dap-ui")
+
+	-- Git
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
+	use("f-person/git-blame.nvim")
+	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
 	-- Java
 	use("mfussenegger/nvim-jdtls")

@@ -9,6 +9,17 @@ end
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 
+local function attach_navic(client, bufnr)
+	vim.g.navic_silence = true
+	if client.server_capabilities.documentSymbolProvider then
+		local status_ok, navic = pcall(require, "nvim-navic")
+		if not status_ok then
+			return
+		end
+		navic.attach(client, bufnr)
+	end
+end
+
 M.setup = function()
 	local icons = require("user.icons")
 	local signs = {
@@ -25,7 +36,7 @@ M.setup = function()
 
 	local config = {
 		-- disable virtual text
-		virtual_text = false,
+		virtual_text = true,
 		-- show signs
 		signs = {
 			active = signs,
@@ -67,15 +78,6 @@ local function lsp_highlight_document(client)
 	end
 	illuminate.on_attach(client)
 	-- end
-end
-
-local function attach_navic(client, bufnr)
-	vim.g.navic_silence = true
-	local status_ok, navic = pcall(require, "nvim-navic")
-	if not status_ok then
-		return
-	end
-	navic.attach(client, bufnr)
 end
 
 M.on_attach = function(client, bufnr)
