@@ -59,6 +59,7 @@ return packer.startup(function(use)
 			require("toggleterm").setup()
 		end,
 	})
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 
 	-- Keybinding
 	use("folke/which-key.nvim")
