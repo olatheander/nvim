@@ -44,6 +44,7 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 	use("wbthomason/packer.nvim") -- Packer can manage itself
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- Folding
+  use({ "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } })
 	use("kyazdani42/nvim-tree.lua")
 	use("folke/tokyonight.nvim")
 	use({

@@ -78,11 +78,9 @@ local keymap = {
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		c = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", "Get Capabilities" },
 		D = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		F = { "<cmd>Lspsaga lsp_finder<cr>", "Find" },
-		i = { "<cmd>LspInfo<cr>", "Info" },
 		j = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Diagnostics prev" },
 		k = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Diagnostics next" },
 		K = { "<cmd>Lspsaga hover_doc<cr>", "Hover docs" },
@@ -99,12 +97,121 @@ local v_keymap = {
 			"<ESC><CMD>lua require('Comment.api').locked('comment.linewise')(vim.fn.visualmode())<CR>",
 			"Comment Line",
 		},
+		L = {
+			"<ESC><CMD>lua require('Comment.api').locked('uncomment.linewise')(vim.fn.visualmode())<CR>",
+			"Uncomment Line",
+		},
 		b = {
 			"<ESC><CMD>lua require('Comment.api').locked('comment.blockwise')(vim.fn.visualmode())<CR>",
 			"Comment Block",
 		},
+		B = {
+			"<ESC><CMD>lua require('Comment.api').locked('uncomment.blockwise')(vim.fn.visualmode())<CR>",
+			"Uncomment Block",
+		},
 	},
 }
 
+-- File-type specific keymaps
+local function ft_keymap()
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "*",
+		callback = function()
+			vim.schedule(FtRunner)
+		end,
+	})
+
+	function FtRunner()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+		local fname = vim.fn.expand("%:p:t")
+		local keymap_ft = {} -- normal key map
+		local keymap_ft_v = {} -- visual key map
+
+		if ft == "python" then
+			keymap_ft = {
+				name = "Python",
+				r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" },
+				m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor" },
+			}
+		elseif ft == "lua" then
+			keymap_ft = {
+				name = "Lua",
+				r = { "<cmd>luafile %<cr>", "Run" },
+			}
+		elseif ft == "rust" then
+			keymap_ft = {
+				name = "Rust",
+				r = { "<cmd>execute 'Cargo run' | startinsert<cr>", "Run" },
+				D = { "<cmd>RustDebuggables<cr>", "Debuggables" },
+				h = { "<cmd>RustHoverActions<cr>", "Hover Actions" },
+				R = { "<cmd>RustRunnables<cr>", "Runnables" },
+			}
+		elseif ft == "go" then
+			keymap_ft = {
+				name = "Go",
+				r = { "<cmd>GoRun<cr>", "Run" },
+			}
+		elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
+			keymap_ft = {
+				name = "Typescript",
+				o = { "<cmd>TypescriptOrganizeImports<cr>", "Organize Imports" },
+				r = { "<cmd>TypescriptRenameFile<cr>", "Rename File" },
+				i = { "<cmd>TypescriptAddMissingImports<cr>", "Import Missing" },
+				F = { "<cmd>TypescriptFixAll<cr>", "Fix All" },
+				u = { "<cmd>TypescriptRemoveUnused<cr>", "Remove Unused" },
+				R = { "<cmd>lua require('config.neotest').javascript_runner()<cr>", "Choose Test Runner" },
+				-- s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" },
+				-- t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" },
+			}
+		elseif ft == "java" then
+			keymap_ft = {
+				name = "Java",
+				o = { "<cmd>lua require'jdtls'.organize_imports()<cr>", "Organize Imports" },
+				v = { "<cmd>lua require('jdtls').extract_variable()<cr>", "Extract Variable" },
+				c = { "<cmd>lua require('jdtls').extract_constant()<cr>", "Extract Constant" },
+				t = { "<cmd>lua require('jdtls').test_class()<cr>", "Test Class" },
+				n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Test Nearest Method" },
+			}
+			keymap_ft_v = {
+				name = "Java",
+				v = { "<cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
+				c = { "<cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
+				m = { "<cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method" },
+			}
+		end
+
+		if fname == "package.json" then
+			keymap_ft = {
+				name = "Npm/Yarn",
+				c = { "<cmd>lua require('package-info').change_version()<cr>", "Change Version" },
+				v = { "<cmd>lua require('package-info').show()<cr>", "Show Version" },
+			}
+			-- keymap_c.s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" }
+			-- keymap_c.t = { "<cmd>2TermExec cmd='yarn test'<cr>", "Yarn Test" }
+		end
+
+		if fname == "Cargo.toml" then
+			keymap_ft = {
+				name = "Cargo",
+				u = { "<cmd>lua require('crates').upgrade_all_crates()<cr>", "Upgrade All Crates" },
+			}
+		end
+
+		if next(keymap_ft) ~= nil then
+			local k = { t = keymap_ft }
+			local o = { mode = "n", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
+			whichkey.register(k, o)
+		end
+
+		if next(keymap_ft_v) ~= nil then
+			local k = { t = keymap_ft_v }
+			local o = { mode = "v", silent = true, noremap = true, buffer = bufnr, prefix = "<leader>", nowait = true }
+			whichkey.register(k, o)
+		end
+	end
+end
+
 whichkey.register(keymap, opts)
 whichkey.register(v_keymap, v_opts)
+ft_keymap()

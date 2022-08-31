@@ -8,6 +8,17 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
 
+	-- format on save
+	if client.server_capabilities.documentFormattingProvider then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = vim.api.nvim_create_augroup("Format", { clear = true }),
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.formatting_seq_sync()
+			end,
+		})
+	end
+
 	--Enable completion triggered by <c-x><c-o>
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end
@@ -44,12 +55,41 @@ protocol.CompletionItemKind = {
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 nvim_lsp.dockerls.setup({})
+nvim_lsp.yamlls.setup({})
+
+local function add_missing_imports()
+	local params = {
+		command = "_typescript.addMissingImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+		title = "",
+	}
+	vim.lsp.buf.execute_command(params)
+end
+
+local function organize_imports()
+	local params = {
+		command = "_typescript.organizeImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+		title = "",
+	}
+	vim.lsp.buf.execute_command(params)
+end
 
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
 	filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
 	cmd = { "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
+	commands = {
+		AddMissingImport = {
+			add_missing_imports,
+			description = "Add missing Imports",
+		},
+		OrganizeImports = {
+			organize_imports,
+			description = "Organize Imports",
+		},
+	},
 })
 
 nvim_lsp.sumneko_lua.setup({
