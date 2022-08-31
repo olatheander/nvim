@@ -44,7 +44,7 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 	use("wbthomason/packer.nvim") -- Packer can manage itself
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- Folding
-  use({ "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } })
+	use({ "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } })
 	use("kyazdani42/nvim-tree.lua")
 	use("folke/tokyonight.nvim")
 	use({
@@ -75,7 +75,7 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter", -- A highly extendable fuzzy finder over lists
 	})
 	use("nvim-telescope/telescope.nvim")
-  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("windwp/nvim-ts-autotag")
 	use("norcalli/nvim-colorizer.lua")
 	use({
@@ -99,6 +99,9 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+
+	-- Java
+	use("mfussenegger/nvim-jdtls")
 
 	-- Comment
 	use({

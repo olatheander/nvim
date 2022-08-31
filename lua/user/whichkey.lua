@@ -70,7 +70,7 @@ local keymap = {
 
 	g = {
 		name = "Git",
-		b = { "<cmd>GitBlameToggle<CR>", "Blame" },
+		b = { "<cmd>GitBlameToggle<CR>", "Toogle Git Blame" },
 		d = { "<cmd>DiffviewOpen<cr>", "Diff View Open" },
 		D = { "<cmd>DiffviewClose<cr>", "Diff View Close" },
 	},
@@ -175,9 +175,9 @@ local function ft_keymap()
 			}
 			keymap_ft_v = {
 				name = "Java",
-				v = { "<cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
-				c = { "<cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
-				m = { "<cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method" },
+				v = { "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
+				c = { "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
+				m = { "<esc><cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method" },
 			}
 		end
 
