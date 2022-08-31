@@ -43,6 +43,7 @@ return packer.startup(function(use)
 	-- My plugins here
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 	use("wbthomason/packer.nvim") -- Packer can manage itself
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- Folding
 	use("kyazdani42/nvim-tree.lua")
 	use("folke/tokyonight.nvim")
 	use({
@@ -61,6 +62,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
 	use("hrsh7th/nvim-cmp") -- Completion
 	use("neovim/nvim-lspconfig") -- A collection of configurations for Neovim’s built-in LSP
+	use("glepnir/lspsaga.nvim") -- LSP UIs
 	use("williamboman/mason.nvim") -- Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters
 	use("williamboman/mason-lspconfig.nvim") -- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
 	use("jose-elias-alvarez/null-ls.nvim") -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
@@ -72,9 +74,19 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter", -- A highly extendable fuzzy finder over lists
 	})
 	use("nvim-telescope/telescope.nvim")
-	use("windwp/nvim-autopairs")
+  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("windwp/nvim-ts-autotag")
 	use("norcalli/nvim-colorizer.lua")
+	use({
+		"folke/trouble.nvim",
+		wants = "nvim-web-devicons",
+		cmd = { "TroubleToggle", "Trouble" },
+		config = function()
+			require("trouble").setup({
+				use_diagnostic_signs = true,
+			})
+		end,
+	})
 	use({
 		"nvim-lualine/lualine.nvim", -- A blazing fast and easy to configure Neovim statusline written in Lua
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -86,6 +98,28 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+
+	-- Comment
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({
+				mappings = {
+					---Operator-pending mapping
+					---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
+					---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+					basic = false,
+					---Extra mapping
+					---Includes `gco`, `gcO`, `gcA`
+					extra = false,
+					---Extended mapping
+					---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+					extended = false,
+				},
+			})
+		end,
+	})
+
 	-- Git
 	use({
 		"lewis6991/gitsigns.nvim", -- Git integration for buffers
