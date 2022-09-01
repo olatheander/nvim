@@ -58,12 +58,20 @@ return packer.startup(function(use)
 		end,
 	})
 	use("L3MON4D3/LuaSnip")
+	use("b0o/SchemaStore.nvim")
+	use("MattesGroeger/vim-bookmarks")
+	use("ThePrimeagen/harpoon")
 	use("onsails/lspkind-nvim") -- vscode-like pictograms
 	use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
 	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
 	use("hrsh7th/nvim-cmp") -- Completion
 	use("neovim/nvim-lspconfig") -- A collection of configurations for Neovim’s built-in LSP
 	use("glepnir/lspsaga.nvim") -- LSP UIs
+	use("ldelossa/litee.nvim")
+	use("ldelossa/litee-calltree.nvim")
+	use("ldelossa/litee-symboltree.nvim")
+	use("ldelossa/litee-filetree.nvim")
+	use("ldelossa/litee-bookmarks.nvim")
 	use("williamboman/mason.nvim") -- Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters
 	use("williamboman/mason-lspconfig.nvim") -- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
 	use("jose-elias-alvarez/null-ls.nvim") -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
@@ -98,6 +106,16 @@ return packer.startup(function(use)
 		"iamcco/markdown-preview.nvim",
 		run = function()
 			vim.fn["mkdp#util#install"]()
+		end,
+	})
+
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "v2.*",
+		config = function()
+			require("toggleterm").setup({
+				close_on_exit = true,
+			})
 		end,
 	})
 

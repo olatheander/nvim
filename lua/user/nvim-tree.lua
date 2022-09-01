@@ -9,12 +9,13 @@ nvim_tree.setup({
 	view = {
 		number = true,
 		relativenumber = true,
+		adaptive_size = true,
 	},
 	renderer = {
 		group_empty = true,
 	},
 	filters = {
-		dotfiles = true,
+		dotfiles = false,
 	},
 	update_focused_file = { enable = true },
 })

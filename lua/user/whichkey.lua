@@ -1,5 +1,12 @@
 local whichkey = require("which-key")
 
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, close_on_exit = true, direction = "float" })
+
+function _LAZYGIT_TOGGLE()
+	lazygit:toggle()
+end
+
 local conf = {
 	window = {
 		border = "single", -- none, single, double, shadow
@@ -17,6 +24,32 @@ local opts = {
 	nowait = false, -- use `nowait` when creating keymaps
 }
 
+local m_opts = {
+	mode = "n", -- NORMAL mode
+	prefix = "m",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+}
+
+local m_mappings = {
+	a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
+	c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
+	b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
+	m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
+	["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
+	[","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
+	j = { "<cmd>silent BookmarkNext<cr>", "Next" },
+	s = { "<cmd>Telescope harpoon marks<cr>", "Harpoon Marks" },
+	k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
+	S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
+	x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
+	[";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
+}
+
+whichkey.register(m_mappings, m_opts)
+
 local v_opts = {
 	mode = "v", -- Visual mode
 	prefix = "<leader>",
@@ -29,37 +62,61 @@ local v_opts = {
 local keymap = {
 	b = {
 		name = "Buffer",
+		b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 		c = { "<Cmd>BDelete this<Cr>", "Close Buffer" },
 		f = { "<Cmd>BDelete! this<Cr>", "Force Close Buffer" },
 		D = { "<Cmd>BWipeout other<Cr>", "Delete All Buffers" },
-		b = { "<Cmd>BufferLinePick<Cr>", "Pick a Buffer" },
-		p = { "<Cmd>BufferLinePickClose<Cr>", "Pick & Close a Buffer" },
+		p = { "<Cmd>BufferLinePick<Cr>", "Pick a Buffer" },
+		x = { "<Cmd>BufferLinePickClose<Cr>", "Pick & Close a Buffer" },
 		m = { "<Cmd>JABSOpen<Cr>", "Menu" },
 	},
 
 	c = {
 		name = "Code",
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		b = {
 			"<CMD>lua require('Comment.api').toggle.blockwise.current()<CR>",
 			"Comment Block",
 		},
 		d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
 		D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+		F = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostics" },
 		g = { "<cmd>Neogen func<Cr>", "Func Doc" },
 		G = { "<cmd>Neogen class<Cr>", "Class Doc" },
 		h = { "<cmd>DogeGenerate<Cr>", "Generate Doc" },
+		i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
+		j = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Diagnostics prev" },
+		k = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Diagnostics next" },
+		K = { "<cmd>Lspsaga hover_doc<cr>", "Hover docs" },
 		l = {
 			"<CMD>lua require('Comment.api').toggle.linewise.current()<CR>",
 			"Comment Line",
 		},
-		I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
+		L = { "<cmd>Lspsaga lsp_finder<cr>", "Find" },
+		o = { "<cmd>LSoutlineToggle<cr>", "Outline" },
+		O = {
+			name = "Litee Outline",
+			b = { "<cmd>LTCreateBookmark<cr>", "Create bookmark" },
+			d = { "<cmd>LTDeleteBookmark<cr>", "Delete bookmark" },
+			f = { "<cmd>LTOpenFiletree<cr>", "File tree" },
+			i = { "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", "Incoming calls" },
+			l = { "<cmd>LTListNotebooks<cr>", "List notebooks" },
+			n = { "<cmd>LTOpenNotebook<cr>", "Open notebook" },
+			N = { "<cmd>LTCreateNotebook<cr>", "Create notebook" },
+			o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", "Outgoing calls" },
+			s = { "<cmd>lua vim.lsp.buf.document_symbol()<cr>", "Symbols" },
+		},
+		p = { "<cmd>Lspsaga preview_definition<cr>", "Preview" },
 		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-		f = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float" },
-		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature" },
+		R = { "<cmd>Lspsaga rename<cr>", "Rename" },
+		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "LSP Signature" },
+		S = { "<cmd>Lspsaga signature_help<cr>", "Saga Signature" },
+		t = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
 		T = { "<cmd>TodoTelescope<Cr>", "TODO" },
 		q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Loc List" },
 	},
-
+	e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	f = {
 		name = "Find",
 		f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Files" },
@@ -71,28 +128,34 @@ local keymap = {
 	g = {
 		name = "Git",
 		b = { "<cmd>GitBlameToggle<CR>", "Toogle Git Blame" },
+		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 		d = { "<cmd>DiffviewOpen<cr>", "Diff View Open" },
 		D = { "<cmd>DiffviewClose<cr>", "Diff View Close" },
+		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+		l = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+		u = {
+			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+			"Undo Stage Hunk",
+		},
+		x = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 	},
-
-	l = {
-		name = "LSP",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		D = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
-		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
-		F = { "<cmd>Lspsaga lsp_finder<cr>", "Find" },
-		j = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Diagnostics prev" },
-		k = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Diagnostics next" },
-		K = { "<cmd>Lspsaga hover_doc<cr>", "Hover docs" },
-		p = { "<cmd>Lspsaga preview_definition<cr>", "Preview" },
-		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
-		s = { "<cmd>Lspsaga signature_help<cr>", "Signature" },
-	},
-
+	h = { "<cmd>split<cr>", "split" },
 	m = {
 		name = "Markdown",
 		t = { "<cmd>MarkdownPreviewToggle<cr>", "Toogle Markdown Preview" },
 	},
+
+	r = {
+		name = "Terminal",
+		f = { "<cmd>Lspsaga open_floaterm<CR>", "Open Floating terminal" },
+	},
+	v = { "<cmd>vsplit<cr>", "vsplit" },
 }
 
 local v_keymap = {
