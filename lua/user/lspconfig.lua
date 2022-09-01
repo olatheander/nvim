@@ -9,15 +9,15 @@ local on_attach = function(client, bufnr)
 	end
 
 	-- format on save
-	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = vim.api.nvim_create_augroup("Format", { clear = true }),
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.formatting_seq_sync()
-			end,
-		})
-	end
+	-- if client.server_capabilities.documentFormattingProvider then
+	-- 	vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 		group = vim.api.nvim_create_augroup("Format", { clear = true }),
+	-- 		buffer = bufnr,
+	-- 		callback = function()
+	-- 			vim.lsp.buf.formatting_seq_sync()
+	-- 		end,
+	-- 	})
+	-- end
 
 	--Enable completion triggered by <c-x><c-o>
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -55,6 +55,7 @@ protocol.CompletionItemKind = {
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 nvim_lsp.dockerls.setup({})
+nvim_lsp.gopls.setup({})
 nvim_lsp.yamlls.setup({})
 
 local function add_missing_imports()

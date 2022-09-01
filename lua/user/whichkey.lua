@@ -88,6 +88,11 @@ local keymap = {
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		s = { "<cmd>Lspsaga signature_help<cr>", "Signature" },
 	},
+
+	m = {
+		name = "Markdown",
+		t = { "<cmd>MarkdownPreviewToggle<cr>", "Toogle Markdown Preview" },
+	},
 }
 
 local v_keymap = {
