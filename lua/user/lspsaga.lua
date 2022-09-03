@@ -5,4 +5,13 @@ local saga = require("lspsaga")
 -- 		typescript = "typescript",
 -- 	},
 -- })
-saga.init_lsp_saga()
+saga.init_lsp_saga({
+	-- Winbar does not yet work but can replace navic eventually.
+	-- symbol_in_winbar = {
+	-- 	in_custom = true,
+	-- 	enable = true,
+	-- 	separator = " ",
+	-- 	show_file = true,
+	-- 	click_support = false,
+	-- },
+})
