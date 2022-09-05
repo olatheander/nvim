@@ -1,10 +1,14 @@
 local jdtls = require("jdtls")
+local jdtls_dap = require("jdtls.dap")
 local navic = require("nvim-navic")
 local lsp_format = require("lsp-format")
 
 -- Installation location of jdtls by nvim-lsp-installer
 -- local JDTLS_LOCATION = vim.fn.stdpath("data") .. "/lsp_servers/jdtls"
 local MASON = vim.fn.stdpath("data") .. "/mason"
+--
+-- Debugger installation location
+local DEBUGGER_LOCATION = "~/Git"
 
 -- Only for Linux and Mac
 local SYSTEM = "linux"
@@ -42,10 +46,20 @@ local on_attach = function(client, bufnr)
 
 	navic.attach(client, bufnr)
 	lsp_format.on_attach(client)
+	jdtls.setup_dap({ hotcodereplace = "auto" })
+	jdtls_dap.setup_dap_main_class_configs()
 
 	--Enable completion triggered by <c-x><c-o>
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end
+
+-- Debugging
+local bundles = {
+	vim.fn.glob(
+		DEBUGGER_LOCATION .. "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+	),
+}
+vim.list_extend(bundles, vim.split(vim.fn.glob(DEBUGGER_LOCATION .. "/vscode-java-test/server/*.jar"), "\n"))
 
 local config = {
 	cmd = {
@@ -159,7 +173,7 @@ local config = {
 	--
 	-- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
 	init_options = {
-		bundles = {},
+		bundles = bundles,
 	},
 }
 

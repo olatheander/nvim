@@ -128,6 +128,8 @@ return packer.startup(function(use)
 
 	-- Java
 	use("mfussenegger/nvim-jdtls")
+	use("mfussenegger/nvim-dap")
+	use("rcarriga/nvim-dap-ui")
 
 	-- Comment
 	use({
