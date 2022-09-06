@@ -63,12 +63,12 @@ nvim_lsp.dockerls.setup({})
 nvim_lsp.gopls.setup({})
 nvim_lsp.yamlls.setup({})
 nvim_lsp.jsonls.setup({
-	settings = {
-		json = {
-			schemas = require("schemastore").json.schemas(),
-			validate = { enable = true },
-		},
-	},
+	-- settings = {
+	-- 	json = {
+	-- 		schemas = require("schemastore").json.schemas(),
+	-- 		validate = { enable = true },
+	-- 	},
+	-- },
 })
 
 local function add_missing_imports()
