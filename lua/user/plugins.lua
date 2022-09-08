@@ -99,10 +99,8 @@ return packer.startup(function(use)
 		"SmiteshP/nvim-navic",
 		requires = "neovim/nvim-lspconfig",
 	})
-	use({
-		"nvim-treesitter/nvim-treesitter", -- A highly extendable fuzzy finder over lists
-	})
-	use("nvim-telescope/telescope.nvim")
+	use("nvim-treesitter/nvim-treesitter") -- Experimenal parser library
+	use("nvim-telescope/telescope.nvim") -- A highly extendable fuzzy finder over lists
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("windwp/nvim-ts-autotag")
 	use("norcalli/nvim-colorizer.lua")
