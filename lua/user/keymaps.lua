@@ -21,3 +21,6 @@ keymap("v", ">", ">gv", opts)
 -- Bufferline
 keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", opts)
 keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", opts)
+
+-- Greatest remap ever (ThePrimagen) https://www.youtube.com/watch?v=qZO9A5F6BZs
+keymap("x", "<leader>p", '"_dP', opts)

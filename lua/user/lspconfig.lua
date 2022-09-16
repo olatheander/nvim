@@ -43,6 +43,7 @@ nvim_lsp.jsonls.setup({
 	-- },
 })
 nvim_lsp.marksman.setup({})
+nvim_lsp.lemminx.setup({})
 
 local function add_missing_imports()
 	local params = {

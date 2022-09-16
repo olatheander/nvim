@@ -64,6 +64,7 @@ return packer.startup(function(use)
 	use("b0o/SchemaStore.nvim")
 	use("MattesGroeger/vim-bookmarks")
 	use("ThePrimeagen/harpoon")
+	use("ThePrimeagen/vim-be-good") -- In-vim game to practice editing speed.
 	use("onsails/lspkind-nvim") -- vscode-like pictograms
 	use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
 	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
@@ -100,11 +101,18 @@ return packer.startup(function(use)
 		requires = "neovim/nvim-lspconfig",
 	})
 	use("nvim-treesitter/nvim-treesitter") -- Experimenal parser library
+	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-telescope/telescope.nvim") -- A highly extendable fuzzy finder over lists
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("windwp/nvim-ts-autotag")
 	use("norcalli/nvim-colorizer.lua")
 	use("kyazdani42/nvim-web-devicons")
+	use({
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup({ hint_enable = true, hint_prefix = " " })
+		end,
+	})
 	use({
 		"folke/trouble.nvim",
 		wants = "nvim-web-devicons",

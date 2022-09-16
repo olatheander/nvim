@@ -165,7 +165,11 @@ local config = {
 			useBlocks = true,
 		},
 	},
-
+	on_init = function(client)
+		if client.config.settings then
+			client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+		end
+	end,
 	-- flags = {
 	--   allow_incremental_sync = true,
 	-- },
