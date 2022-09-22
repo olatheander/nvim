@@ -35,31 +35,31 @@ local opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
-local m_opts = {
+local b_opts = {
   mode = "n", -- NORMAL mode
-  prefix = "m",
+  prefix = "b",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
 }
 
-local m_mappings = {
+local b_mappings = {
   a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
   c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
   b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
   m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
   ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
   [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
-  j = { "<cmd>silent BookmarkNext<cr>", "Next" },
+  j = { "<cmd>silent BookmarkNext<cr>", "Bookmark Next" },
   s = { "<cmd>Telescope harpoon marks<cr>", "Harpoon Marks" },
-  k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
-  S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
-  x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
+  k = { "<cmd>silent BookmarkPrev<cr>", "Bookmark Prev" },
+  S = { "<cmd>silent BookmarkShowAll<cr>", "Bookmark Show All" },
+  x = { "<cmd>BookmarkClearAll<cr>", "Bookmark Clear All" },
   [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }
 
-whichkey.register(m_mappings, m_opts)
+whichkey.register(b_mappings, b_opts)
 
 local v_opts = {
   mode = "v", -- Visual mode
@@ -259,9 +259,9 @@ local function ft_keymap()
     elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
       keymap_ft = {
         name = "Typescript",
-        o = { "<cmd>TypescriptOrganizeImports<cr>", "Organize Imports" },
+        o = { "<cmd>OrganizeImports<cr>", "Organize Imports" },
         r = { "<cmd>TypescriptRenameFile<cr>", "Rename File" },
-        i = { "<cmd>TypescriptAddMissingImports<cr>", "Import Missing" },
+        i = { "<cmd>AddMissingImports<cr>", "Add Missing Imports" },
         F = { "<cmd>TypescriptFixAll<cr>", "Fix All" },
         u = { "<cmd>TypescriptRemoveUnused<cr>", "Remove Unused" },
         R = { "<cmd>lua require('config.neotest').javascript_runner()<cr>", "Choose Test Runner" },
