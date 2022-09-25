@@ -35,32 +35,6 @@ local opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
-local b_opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "b",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-
-local b_mappings = {
-  a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
-  c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
-  b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
-  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
-  ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
-  [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
-  j = { "<cmd>silent BookmarkNext<cr>", "Bookmark Next" },
-  s = { "<cmd>Telescope harpoon marks<cr>", "Harpoon Marks" },
-  k = { "<cmd>silent BookmarkPrev<cr>", "Bookmark Prev" },
-  S = { "<cmd>silent BookmarkShowAll<cr>", "Bookmark Show All" },
-  x = { "<cmd>BookmarkClearAll<cr>", "Bookmark Clear All" },
-  [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
-}
-
-whichkey.register(b_mappings, b_opts)
-
 local v_opts = {
   mode = "v", -- Visual mode
   prefix = "<leader>",
@@ -182,7 +156,21 @@ local keymap = {
     name = "Markdown",
     t = { "<cmd>MarkdownPreviewToggle<cr>", "Toogle Markdown Preview" },
   },
-
+  n = {
+    name = "Bookmark",
+    a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
+    c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
+    b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
+    m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
+    ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
+    [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
+    j = { "<cmd>silent BookmarkNext<cr>", "Bookmark Next" },
+    s = { "<cmd>Telescope harpoon marks<cr>", "Harpoon Marks" },
+    k = { "<cmd>silent BookmarkPrev<cr>", "Bookmark Prev" },
+    S = { "<cmd>silent BookmarkShowAll<cr>", "Bookmark Show All" },
+    x = { "<cmd>BookmarkClearAll<cr>", "Bookmark Clear All" },
+    [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
+  },
   r = {
     name = "Terminal",
     f = { "<cmd>Lspsaga open_floaterm<CR>", "Open Floating terminal" },
