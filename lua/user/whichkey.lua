@@ -126,7 +126,7 @@ local keymap = {
   e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   f = {
     name = "Find",
-    f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Files" },
+    f = { "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>", "Files" },
     g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Grep" },
     b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
     h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Buffers" },
