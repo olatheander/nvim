@@ -144,12 +144,6 @@ return packer.startup(function(use)
       })
     end,
   })
-  use({
-    "goolord/alpha-nvim",
-    config = function()
-      require("alpha").setup(require("alpha.themes.dashboard").config)
-    end,
-  })
 
   -- Java
   use("mfussenegger/nvim-jdtls")
@@ -181,7 +175,9 @@ return packer.startup(function(use)
   use({
     "lewis6991/gitsigns.nvim", -- Git integration for buffers
     config = function()
-      require("gitsigns").setup()
+      require("gitsigns").setup({
+        numhl = true,
+      })
     end,
   })
   use("f-person/git-blame.nvim")

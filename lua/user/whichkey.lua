@@ -92,11 +92,11 @@ local keymap = {
       o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", "Outgoing calls" },
       s = { "<cmd>lua vim.lsp.buf.document_symbol()<cr>", "Symbols" },
     },
-    p = { "<cmd>Lspsaga preview_definition<cr>", "Preview" },
+    p = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
     r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
     R = { "<cmd>Lspsaga rename<cr>", "Rename" },
     s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "LSP Signature" },
-    t = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
+    t = { "<cmd>TroubleToggle<cr>", "TT Diagnostics" },
     T = { "<cmd>TodoTelescope<Cr>", "TODO" },
     q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Loc List" },
   },
@@ -126,10 +126,11 @@ local keymap = {
   e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   f = {
     name = "Find",
+    b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
     f = { "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>", "Files" },
     g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Grep" },
-    b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
     h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Buffers" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
   },
 
   g = {
