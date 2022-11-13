@@ -22,8 +22,11 @@ local on_attach = function(client, bufnr)
   -- end
 
   navic.attach(client, bufnr)
-  lsp_format.on_attach(client)
-
+  if client.name ~= "tsserver" then
+    lsp_format.on_attach(client) -- null-ls to format TS on save (to have Prettier kick in)
+  else
+    client.server_capabilities.documentFormattingProvider = false
+  end
   --Enable completion triggered by <c-x><c-o>
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end

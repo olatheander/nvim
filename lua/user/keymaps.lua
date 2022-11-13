@@ -19,8 +19,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Bufferline
-keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", opts)
-keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", opts)
+keymap("n", "<S-Tab>", "<cmd>BufferLineCycleNext<cr>", opts)
+keymap("n", "<M-Tab>", "<cmd>BufferLineCyclePrev<cr>", opts) -- Use Meta/Alt not to break CTRL+i (since CTRL+i and Tab is the same thing in terminals)
 
 -- Greatest remap ever (ThePrimagen) https://www.youtube.com/watch?v=qZO9A5F6BZs
 keymap("x", "<leader>p", '"_dP', opts)

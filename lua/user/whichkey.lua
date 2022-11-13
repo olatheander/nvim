@@ -65,7 +65,7 @@ local keymap = {
     },
     d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
     D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.format {async = true}<cr>", "Format" },
     F = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostics" },
     g = { "<cmd>Neogen func<Cr>", "Func Doc" },
     G = { "<cmd>Neogen class<Cr>", "Class Doc" },
@@ -98,7 +98,7 @@ local keymap = {
     s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "LSP Signature" },
     t = { "<cmd>TroubleToggle<cr>", "TT Diagnostics" },
     T = { "<cmd>TodoTelescope<Cr>", "TODO" },
-    q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Loc List" },
+    q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Diagnostics Loc List" },
   },
   d = {
     name = "Debug",
