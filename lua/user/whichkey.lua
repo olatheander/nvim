@@ -249,6 +249,7 @@ local function ft_keymap()
     elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
       keymap_ft = {
         name = "Typescript",
+        l = { "<cmd>!eslint_d --fix %<cr>", "ESLint Fix" },
         o = { "<cmd>OrganizeImports<cr>", "Organize Imports" },
         r = { "<cmd>TypescriptRenameFile<cr>", "Rename File" },
         i = { "<cmd>AddMissingImports<cr>", "Add Missing Imports" },
