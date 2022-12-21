@@ -1,1 +1,2 @@
-print("Hello from User")
+require("user.remap")
+require("user.set")
