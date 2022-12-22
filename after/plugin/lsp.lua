@@ -9,7 +9,7 @@ lsp.ensure_installed({
     'sumneko_lua',
     'dockerls',
     'yamlls',
-    'jdtls',
+    -- 'jdtls',
     'jsonls',
     'gopls'
 })
@@ -47,7 +47,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
-    suggest_lsp_servers = true,
+    suggest_lsp_servers = false
 })
 
 lsp.on_attach(function(client, bufnr)

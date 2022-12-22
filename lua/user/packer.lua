@@ -3,7 +3,23 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    print("Failed to require packer!")
+    return
+end
+
+-- Have packer use a popup window
+packer.init({
+    display = {
+        open_fn = function()
+            return require("packer.util").float({ border = "rounded" })
+        end,
+    },
+})
+
+return packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -79,7 +95,6 @@ return require('packer').startup(function(use)
         "SmiteshP/nvim-navic",
         requires = "neovim/nvim-lspconfig",
     })
-    use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }) -- A snazzy bufferline
 
     use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- Folding
     use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter

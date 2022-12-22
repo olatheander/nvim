@@ -1,11 +1,12 @@
 local jdtls = require("jdtls")
 local jdtls_dap = require("jdtls.dap")
 local navic = require("nvim-navic")
-local lsp_format = require("lsp-format")
+-- local lsp_format = require("lsp-format")
 
 -- Installation location of jdtls by nvim-lsp-installer
+local JDTLS_LOCATION = "/usr/share/java/jdtls"
 -- local JDTLS_LOCATION = vim.fn.stdpath("data") .. "/lsp_servers/jdtls"
-local MASON = vim.fn.stdpath("data") .. "/mason"
+-- local MASON = vim.fn.stdpath("data") .. "/mason"
 --
 -- Debugger installation location
 local DEBUGGER_LOCATION = "~/Git"
@@ -45,7 +46,7 @@ local on_attach = function(client, bufnr)
   -- end
 
   navic.attach(client, bufnr)
-  lsp_format.on_attach(client)
+  -- lsp_format.on_attach(client)
   jdtls.setup_dap({ hotcodereplace = "auto" })
   jdtls_dap.setup_dap_main_class_configs()
 
@@ -76,10 +77,13 @@ local config = {
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
     "-jar",
-    vim.fn.glob(MASON .. "/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+    vim.fn.glob(JDTLS_LOCATION .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+    -- vim.fn.glob(MASON .. "/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     -- "/home/olathe/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
     "-configuration",
-    MASON .. "/packages/jdtls/config_" .. SYSTEM,
+    "/home/olathe/.config/java/jdtls/config_linux",
+    -- JDTLS_LOCATION .. "/config_" .. SYSTEM,
+    -- MASON .. "/packages/jdtls/config_" .. SYSTEM,
     "-data",
     workspace_dir,
   },
