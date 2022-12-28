@@ -28,6 +28,8 @@ return packer.startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
     use("folke/tokyonight.nvim")
     use({
@@ -53,9 +55,23 @@ return packer.startup(function(use)
     use("kyazdani42/nvim-tree.lua")
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
+    use { -- Additional text objects via treesitter
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        after = 'nvim-treesitter',
+    }
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use("norcalli/nvim-colorizer.lua")
+    use({
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                -- for example, context is off by default, use this to turn it on
+                show_current_context = true,
+                show_current_context_start = true,
+            })
+        end,
+    })
 
     use("ldelossa/litee.nvim")
     use("ldelossa/litee-calltree.nvim")
@@ -85,6 +101,9 @@ return packer.startup(function(use)
         }
     }
 
+
+    use("github/copilot.vim")
+
     use({ "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } })
     use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }) -- A snazzy bufferline
     use({
@@ -99,6 +118,13 @@ return packer.startup(function(use)
     use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- Folding
     use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
     use("windwp/nvim-ts-autotag")
+
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+    })
 
     use({
         "akinsho/toggleterm.nvim",
