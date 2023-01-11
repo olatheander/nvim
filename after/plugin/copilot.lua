@@ -1,0 +1,2 @@
+-- use this table to disable/enable filetypes for Copilot
+-- vim.g.copilot_filetypes = { lua = false }

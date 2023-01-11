@@ -9,6 +9,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Append line at the end without moving cursor
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Append line at the end without moving cursor. This is a bit more intuitive.
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Enable half-page jumping while keeping cursor in the middle

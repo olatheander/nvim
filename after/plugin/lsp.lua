@@ -5,7 +5,7 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
     'tsserver',
-    'eslint',
+    -- 'eslint', -- disabled because this fellow caused the typescript LSP server to crash, potentially in combination with nvim-navic.
     'sumneko_lua',
     'dockerls',
     'yamlls',
