@@ -25,6 +25,32 @@ lsp.configure('sumneko_lua', {
     }
 })
 
+local function organize_imports()
+    local params = {
+        command = "_typescript.organizeImports",
+        arguments = { vim.api.nvim_buf_get_name(0) },
+        title = "",
+    }
+    vim.lsp.buf.execute_command(params)
+end
+
+lsp.configure('tsserver', {
+    -- on_attach = function(client, bufnr)
+    --   print('hello tsserver')
+    -- end,
+    -- settings = {
+    --   completions = {
+    --     completeFunctionCalls = true
+    --       }
+    --     }
+    commands = {
+        OrganizeImports = {
+            organize_imports,
+            description = "Organize Imports",
+        },
+    },
+})
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({

@@ -101,6 +101,7 @@ return packer.startup(function(use)
         }
     }
 
+    use("ray-x/lsp_signature.nvim")
 
     use("github/copilot.vim")
 
@@ -170,4 +171,5 @@ return packer.startup(function(use)
         end,
     })
     use('tpope/vim-fugitive')
+    use("f-person/git-blame.nvim")
 end)
