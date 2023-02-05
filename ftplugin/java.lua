@@ -18,7 +18,7 @@ if vim.fn.has("mac") == 1 then
 end
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = vim.fn.expand("~/.cache/jdtls-workspace") .. project_name
+local workspace_dir = vim.fn.expand("~/.cache/jdtls-workspace/") .. project_name
 
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)

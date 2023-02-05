@@ -282,11 +282,12 @@ local function ft_keymap()
         elseif ft == "typescript" or ft == "typescriptreact" or ft == "javascript" or ft == "javascriptreact" then
             keymap_ft = {
                 name = "Typescript",
+                F = { "<cmd>TypescriptFixAll<cr>", "Fix All" },
+                i = { "<cmd>AddMissingImports<cr>", "Add Missing Imports" },
                 l = { "<cmd>!eslint_d --fix %<cr>", "ESLint Fix" },
                 o = { "<cmd>OrganizeImports<cr>", "Organize Imports" },
+                p = { "<cmd>!npx prettier --write %<cr>", "Prettier" },
                 r = { "<cmd>TypescriptRenameFile<cr>", "Rename File" },
-                i = { "<cmd>AddMissingImports<cr>", "Add Missing Imports" },
-                F = { "<cmd>TypescriptFixAll<cr>", "Fix All" },
                 u = { "<cmd>TypescriptRemoveUnused<cr>", "Remove Unused" },
                 R = { "<cmd>lua require('config.neotest').javascript_runner()<cr>", "Choose Test Runner" },
                 -- s = { "<cmd>2TermExec cmd='yarn start'<cr>", "Yarn Start" },

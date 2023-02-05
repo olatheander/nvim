@@ -52,6 +52,17 @@ return packer.startup(function(use)
             })
         end,
     })
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
     use("kyazdani42/nvim-tree.lua")
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
@@ -139,8 +150,19 @@ return packer.startup(function(use)
 
     -- Java
     use("mfussenegger/nvim-jdtls")
+
+    -- DAP
     use("mfussenegger/nvim-dap")
+    use("mfussenegger/nvim-dap-python")
+    use("mxsdev/nvim-dap-vscode-js")
+    use {
+        "microsoft/vscode-js-debug",
+        opt = true,
+        run = "npm install --legacy-peer-deps && npm run compile"
+    }
     use("rcarriga/nvim-dap-ui")
+    use("theHamsta/nvim-dap-virtual-text")
+    use("nvim-telescope/telescope-dap.nvim")
 
     use({
         "numToStr/Comment.nvim",
