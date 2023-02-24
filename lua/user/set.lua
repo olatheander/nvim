@@ -29,7 +29,7 @@ vim.opt.ignorecase = true -- ignore case in search patterns
 
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 4
 vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
