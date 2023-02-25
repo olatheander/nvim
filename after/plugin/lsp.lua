@@ -6,7 +6,7 @@ lsp.preset("recommended")
 lsp.ensure_installed({
     'tsserver',
     -- 'eslint', -- disabled because this fellow caused the typescript LSP server to crash, potentially in combination with nvim-navic.
-    'sumneko_lua',
+    'lua_ls',
     'dockerls',
     'yamlls',
     -- 'jdtls',
@@ -15,7 +15,7 @@ lsp.ensure_installed({
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
