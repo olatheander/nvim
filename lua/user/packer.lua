@@ -65,6 +65,7 @@ return packer.startup(function(use)
     }
     use("kyazdani42/nvim-tree.lua")
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use('nvim-treesitter/nvim-treesitter-context')
     use('nvim-treesitter/playground')
     use { -- Additional text objects via treesitter
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -119,7 +120,7 @@ return packer.startup(function(use)
     use({ "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } })
     use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }) -- A snazzy bufferline
     use({
-        "nvim-lualine/lualine.nvim", -- A blazing fast and easy to configure Neovim statusline written in Lua
+        "nvim-lualine/lualine.nvim",                                                            -- A blazing fast and easy to configure Neovim statusline written in Lua
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
     })
     use({
@@ -128,7 +129,7 @@ return packer.startup(function(use)
     })
 
     use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }) -- Folding
-    use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+    use("windwp/nvim-autopairs")                                              -- Autopairs, integrates with both cmp and treesitter
     use("windwp/nvim-ts-autotag")
 
     use({

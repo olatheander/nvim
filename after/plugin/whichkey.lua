@@ -166,6 +166,8 @@ local n_keymap = {
         b = { "<cmd>GitBlameToggle<CR>", "Toogle Git Blame" },
         c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
         d = { "<cmd>DiffviewToggle<cr>", "Diff View Toggle" },
+        g = { "<cmd>diffget //2<cr>", "diffget left" },
+        h = { "<cmd>diffget //3<cr>", "diffget right" },
         j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
         l = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -174,6 +176,7 @@ local n_keymap = {
         r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
         R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
         s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+        S = { "<cmd>Git<cr>", "Git Status" },
         u = {
             "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
             "Undo Stage Hunk",
