@@ -20,17 +20,17 @@ end, { nargs = "*" })
 
 local conf = {
     window = {
-        border = "single", -- none, single, double, shadow
+        border = "single",   -- none, single, double, shadow
         position = "bottom", -- bottom, top
     },
 }
 whichkey.setup(conf)
 
 local opts = {
-    mode = "n", -- Normal mode
+    mode = "n",     -- Normal mode
     prefix = "",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
+    buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
 }
@@ -43,19 +43,19 @@ local keymap = {
 }
 
 local n_opts = {
-    mode = "n", -- Normal mode
+    mode = "n",     -- Normal mode
     prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
+    buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
 }
 
 local v_opts = {
-    mode = "v", -- Visual mode
+    mode = "v",     -- Visual mode
     prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
+    buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
 }
@@ -72,7 +72,6 @@ local n_keymap = {
         x = { "<Cmd>BufferLinePickClose<Cr>", "Pick & Close a Buffer" },
         m = { "<Cmd>JABSOpen<Cr>", "Menu" },
     },
-
     c = {
         name = "Code",
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -151,7 +150,8 @@ local n_keymap = {
     f = {
         name = "Find",
         b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
-        d = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false, })<cr>",
+        d = {
+            "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false, })<cr>",
             "Fuzzy Find in Buffer" },
         f = { "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>", "Files" },
         g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Grep" },
@@ -160,7 +160,6 @@ local n_keymap = {
         p = { "<cmd>lua require('telescope.builtin').git_files()<cr>", "Git Files" },
         r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
     },
-
     g = {
         name = "Git",
         b = { "<cmd>GitBlameToggle<CR>", "Toogle Git Blame" },
@@ -212,6 +211,8 @@ local n_keymap = {
         s = { "<cmd>Copilot status<cr>", "Status" },
         v = { "<cmd>Copilot version<cr>", "Version" },
     },
+    r = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "Show References" },
+    s = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     u = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
     v = { "<cmd>vsplit<cr>", "vsplit" },
 }
@@ -255,7 +256,7 @@ local function ft_keymap()
         local bufnr = vim.api.nvim_get_current_buf()
         local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
         local fname = vim.fn.expand("%:p:t")
-        local keymap_ft = {} -- normal key map
+        local keymap_ft = {}   -- normal key map
         local keymap_ft_v = {} -- visual key map
 
         if ft == "python" then
