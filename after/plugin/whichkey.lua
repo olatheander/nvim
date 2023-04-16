@@ -212,9 +212,9 @@ local n_keymap = {
         v = { "<cmd>Copilot version<cr>", "Version" },
     },
     r = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "Show References" },
-    s = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     u = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
     v = { "<cmd>vsplit<cr>", "vsplit" },
+    w = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
 }
 
 local v_keymap = {
