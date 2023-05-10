@@ -77,8 +77,10 @@ lsp.set_preferences({
 })
 
 lsp.on_attach(function(client, bufnr)
-
-    navic.attach(client, bufnr)
+    if (client.name ~= "copilot") then
+        -- copilot cause error: nvim-navic: Server "copilot" does not support documentSymbols.
+        navic.attach(client, bufnr)
+    end
 
     if client.name == "eslint" then
         vim.cmd.LspStop('eslint')
@@ -97,6 +99,13 @@ lsp.on_attach(function(client, bufnr)
     -- vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
     -- vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
+
+lsp.set_sign_icons({
+    error = '',
+    warn = ' ',
+    hint = '',
+    info = ''
+})
 
 lsp.setup()
 
