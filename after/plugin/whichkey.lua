@@ -122,6 +122,7 @@ local n_keymap = {
         T = { "<cmd>TodoTelescope<Cr>", "List TODOs" },
         q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Diagnostics Loc List" },
         w = { "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", "Workspace Symbols" },
+        x = { "<cmd>LspRestart<Cr>", "LSP Restart" },
     },
     d = {
         name = "Debug",
