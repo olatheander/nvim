@@ -301,7 +301,7 @@ local function ft_keymap()
         elseif ft == "java" then
             keymap_ft = {
                 name = "Java",
-                o = { "<cmd>lua require'jdtls'.organize_imports()<cr>", "Organize Imports" },
+                o = { "<cmd>lua require('jdtls').organize_imports()<cr>", "Organize Imports" },
                 v = { "<cmd>lua require('jdtls').extract_variable()<cr>", "Extract Variable" },
                 c = { "<cmd>lua require('jdtls').extract_constant()<cr>", "Extract Constant" },
                 t = { "<cmd>lua require('jdtls').test_class()<cr>", "Test Class" },

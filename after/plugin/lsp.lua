@@ -3,16 +3,16 @@ local navic = require("nvim-navic")
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-    'tsserver',
-    -- 'eslint', -- disabled because this fellow caused the typescript LSP server to crash, potentially in combination with nvim-navic.
-    'lua_ls',
-    'dockerls',
-    'yamlls',
-    -- 'jdtls',
-    'jsonls',
-    'gopls'
-})
+-- lsp.ensure_installed({
+--     'tsserver',
+--     -- 'eslint', -- disabled because this fellow caused the typescript LSP server to crash, potentially in combination with nvim-navic.
+--     'lua_ls',
+--     'dockerls',
+--     'yamlls',
+--     -- 'jdtls',
+--     'jsonls',
+--     'gopls'
+-- })
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {
@@ -107,6 +107,7 @@ lsp.set_sign_icons({
     info = ''
 })
 
+lsp.skip_server_setup({ 'jdtls' })
 lsp.setup()
 
 vim.diagnostic.config({
