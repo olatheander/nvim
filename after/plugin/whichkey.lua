@@ -289,9 +289,9 @@ local function ft_keymap()
                 name = "Typescript",
                 F = { "<cmd>TypescriptFixAll<cr>", "Fix All" },
                 i = { "<cmd>AddMissingImports<cr>", "Add Missing Imports" },
-                l = { "<cmd>!eslint_d --fix %<cr>", "ESLint Fix" },
+                l = { "<cmd>!eslint_d --fix %:S<cr>", "ESLint Fix" },
                 o = { "<cmd>OrganizeImports<cr>", "Organize Imports" },
-                p = { "<cmd>w | !npx prettier --write %<cr>", "Prettier" }, -- Save and Prettier
+                p = { "<cmd>w | !npx prettier --write %:S<cr>", "Prettier" }, -- Save and Prettier
                 r = { "<cmd>TypescriptRenameFile<cr>", "Rename File" },
                 u = { "<cmd>TypescriptRemoveUnused<cr>", "Remove Unused" },
                 R = { "<cmd>lua require('config.neotest').javascript_runner()<cr>", "Choose Test Runner" },
