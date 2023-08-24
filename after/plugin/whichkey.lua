@@ -263,6 +263,7 @@ local function ft_keymap()
         if ft == "python" then
             keymap_ft = {
                 name = "Python",
+                o = { "<cmd>PyrightOrganizeImports<cr>", "Organize Imports" },
                 r = { "<cmd>update<CR><cmd>exec '!python3' shellescape(@%, 1)<cr>", "Run" },
                 m = { "<cmd>TermExec cmd='nodemon -e py %'<cr>", "Monitor" },
             }
