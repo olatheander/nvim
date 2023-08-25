@@ -3,6 +3,8 @@ local navic = require("nvim-navic")
 
 lsp.preset("recommended")
 
+lsp.skip_server_setup({'metals'})
+
 -- lsp.ensure_installed({
 --     'tsserver',
 --     -- 'eslint', -- disabled because this fellow caused the typescript LSP server to crash, potentially in combination with nvim-navic.

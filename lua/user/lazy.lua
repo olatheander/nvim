@@ -149,6 +149,12 @@ require("lazy").setup({
     -- Java
     { "mfussenegger/nvim-jdtls" },
 
+    -- Scala
+    {
+        "scalameta/nvim-metals",
+        dependencies = "nvim-lua/plenary.nvim",
+    },
+
     -- DAP
     { "mfussenegger/nvim-dap" },
     { "mfussenegger/nvim-dap-python" },
