@@ -272,6 +272,11 @@ local function ft_keymap()
                 name = "Lua",
                 r = { "<cmd>luafile %<cr>", "Run" },
             }
+        elseif ft == "xml" then
+            keymap_ft_v = {
+                name = "XML",
+                f = { "<cmd>'<,'>!xmllint --format -<cr>", "Format" },
+            }
         elseif ft == "rust" then
             keymap_ft = {
                 name = "Rust",
