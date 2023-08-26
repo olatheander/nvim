@@ -17,6 +17,7 @@ lualine.setup({
         lualine_c = {
             { "filename" },
             { navic.get_location, cond = navic.is_available },
+            { "g:metals_status" }
         },
         lualine_x = { "encoding", "fileformat", "filetype", pwd },
     },
