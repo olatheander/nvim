@@ -7,24 +7,27 @@ local telescope = require("telescope")
 -- vim.keymap.set('n', '<leader>ps', function()
 -- 	builtin.grep_string({ search = vim.fn.input("Grep > ")})
 -- end)
+telescope.load_extension('vim_bookmarks')
 
 telescope.setup({
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
-      },
+    defaults = {
+        -- path_display = { "truncate" },
+        path_display = { shorten = { len = 2, exclude = { 1, -1, -2 } } },
+        mappings = {
+            i = {
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-n>"] = actions.cycle_history_next,
+                ["<C-p>"] = actions.cycle_history_prev,
+            },
+        },
+        file_ignore_patterns = { ".git/" },
     },
-    file_ignore_patterns = { ".git/" },
-  },
-  pickers = {
-    live_grep = {
-      additional_args = function(opts)
-        return { "--hidden" }
-      end,
+    pickers = {
+        live_grep = {
+            additional_args = function(opts)
+                return { "--hidden" }
+            end,
+        },
     },
-  },
 })

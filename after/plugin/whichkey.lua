@@ -79,15 +79,18 @@ local n_keymap = {
             "<CMD>lua require('Comment.api').toggle.blockwise.current()<CR>",
             "Comment Block",
         },
-        d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-        D = { "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Document Symbols" },
+        -- d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+        d = { "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Goto Definition(s)" },
+        D = { "<cmd>lua require('telescope.builtin').lsp_document_symbols({ symbol_width = 50 })<CR>", "Document Symbols" },
         E = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
         f = { "<cmd>lua vim.lsp.buf.format {async = true}<cr>", "Format" },
         F = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostics" },
         g = { "<cmd>Neogen func<Cr>", "Func Doc" },
         G = { "<cmd>Neogen class<Cr>", "Class Doc" },
         h = { "<cmd>DogeGenerate<Cr>", "Generate Doc" },
-        i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
+        -- i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
+        i = { "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", "Implementation(s)" },
+        I = { "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<CR>", "Incomming call(s)" },
         j = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Diagnostics prev" },
         k = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Diagnostics next" },
         K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hoover docs" },
@@ -95,8 +98,7 @@ local n_keymap = {
             "<CMD>lua require('Comment.api').toggle.linewise.current()<CR>",
             "Comment Line",
         },
-        o = { "<cmd>LSoutlineToggle<cr>", "Outline" },
-        O = {
+        L = {
             name = "Litee Outline",
             b = { "<cmd>LTCreateBookmark<cr>", "Create bookmark" },
             d = { "<cmd>LTDeleteBookmark<cr>", "Delete bookmark" },
@@ -105,9 +107,9 @@ local n_keymap = {
             l = { "<cmd>LTListNotebooks<cr>", "List notebooks" },
             n = { "<cmd>LTOpenNotebook<cr>", "Open notebook" },
             N = { "<cmd>LTCreateNotebook<cr>", "Create notebook" },
-            o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", "Outgoing calls" },
-            s = { "<cmd>lua vim.lsp.buf.document_symbol()<cr>", "Symbols" },
         },
+        o = { "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<CR>", "Outgoing call(s)" },
+        O = { "<cmd>LSoutlineToggle<cr>", "Outline" },
         -- r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
         r = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "References" },
         R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
@@ -119,9 +121,13 @@ local n_keymap = {
             q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
             w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
         },
-        T = { "<cmd>TodoTelescope<Cr>", "List TODOs" },
+        T = { "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>", "Goto Type Definition(s)" },
         q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Diagnostics Loc List" },
-        w = { "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", "Workspace Symbols" },
+        Q = { "<cmd>TodoTelescope<Cr>", "List TODOs" },
+        w = {
+            "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols({ fname_width = 85, symbol_width = 30 })<CR>",
+            "Workspace Symbols" },
+        W = { "<cmd>lua require('telescope.builtin').diagnostics()<CR>", "Workspace Diagnostics" },
         x = { "<cmd>LspRestart<Cr>", "LSP Restart" },
     },
     d = {
@@ -151,12 +157,17 @@ local n_keymap = {
     f = {
         name = "Find",
         b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers" },
+        B = { "<cmd>lua require('telescope.builtin').builtin()<cr>", "Built-in" },
+        c = { "<cmd>lua require('telescope.builtin').commands()<cr>", "Commands" },
+        C = { "<cmd>lua require('telescope.builtin').command_history()<cr>", "Command History" },
         d = {
             "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false, })<cr>",
             "Fuzzy Find in Buffer" },
         f = { "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>", "Files" },
         g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Grep" },
+        G = { "<cmd>lua require('telescope.builtin').grep_string()<cr>", "Grep Selection" },
         h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help Tags" },
+        m = { "<cmd>lua require('telescope.builtin').man_pages()<cr>", "Man Pages" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
         p = { "<cmd>lua require('telescope.builtin').git_files()<cr>", "Git Files" },
         r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
@@ -192,16 +203,17 @@ local n_keymap = {
         name = "Bookmark",
         a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
         c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
+        C = { "<cmd>lua require('telescope').extensions.vim_bookmarks.current_file()<cr>", "Bookmark(s) Current File" },
         b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
-        m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
-        ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
-        [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
+        -- m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
+        -- ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
+        -- [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
         j = { "<cmd>silent BookmarkNext<cr>", "Bookmark Next" },
-        s = { "<cmd>Telescope harpoon marks<cr>", "Harpoon Marks" },
         k = { "<cmd>silent BookmarkPrev<cr>", "Bookmark Prev" },
-        S = { "<cmd>silent BookmarkShowAll<cr>", "Bookmark Show All" },
+        s = { "<cmd>lua require('telescope').extensions.vim_bookmarks.all()<cr>", "Bookmark Show All" },
+        -- S = { "<cmd>Telescope harpoon marks<cr>", "List Harpoon Marks" },
+        -- S = { "<cmd>silent BookmarkShowAll<cr>", "Bookmark Show All" },
         x = { "<cmd>BookmarkClearAll<cr>", "Bookmark Clear All" },
-        [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
     },
     o = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Recently Opened" },
     p = {
@@ -215,7 +227,8 @@ local n_keymap = {
     r = { "<cmd>lua require('telescope.builtin').lsp_references()<CR>", "Show References" },
     u = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
     v = { "<cmd>vsplit<cr>", "vsplit" },
-    w = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+    -- w = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+    w = { "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", "Goto Definition(s)" },
 }
 
 local v_keymap = {
@@ -318,6 +331,15 @@ local function ft_keymap()
                 v = { "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable" },
                 c = { "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant" },
                 m = { "<esc><cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method" },
+            }
+        elseif ft == "scala" or ft == "sbt" then
+            keymap_ft = {
+                name = "Scala",
+                i = { "<cmd>MetalsImportBuild<cr>", "Import Build" },
+                o = { "<cmd>MetalsOrganizeImports<cr>", "Organize Imports" },
+            }
+            keymap_ft_v = {
+                name = "Scala",
             }
         end
 

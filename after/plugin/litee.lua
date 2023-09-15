@@ -15,6 +15,6 @@ require("litee.symboltree").setup({
 require("litee.filetree").setup({
 	on_open = "panel",
 })
-require("litee.bookmarks").setup({
-	on_open = "panel",
-})
+-- require("litee.bookmarks").setup({
+-- 	on_open = "panel",
+-- })

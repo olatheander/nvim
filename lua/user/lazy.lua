@@ -64,7 +64,7 @@ require("lazy").setup({
     },
     { 'nvim-treesitter/nvim-treesitter-context' },
     { 'nvim-treesitter/playground' },
-    { 'theprimeagen/harpoon' },
+    -- { 'theprimeagen/harpoon' },
     { 'mbbill/undotree' },
     { "norcalli/nvim-colorizer.lua" },
     {
@@ -81,7 +81,16 @@ require("lazy").setup({
     { "ldelossa/litee-calltree.nvim" },
     { "ldelossa/litee-symboltree.nvim" },
     { "ldelossa/litee-filetree.nvim" },
-    { "ldelossa/litee-bookmarks.nvim" },
+    -- { "ldelossa/litee-bookmarks.nvim" },
+
+    { "MattesGroeger/vim-bookmarks" },
+    {
+        "tom-anders/telescope-vim-bookmarks.nvim",
+        config = function()
+            vim.g.bookmark_save_per_working_dir = 1
+            vim.g.bookmark_auto_save = 1
+        end,
+    },
 
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -105,7 +114,7 @@ require("lazy").setup({
         }
     },
 
-    { "ray-x/lsp_signature.nvim" },
+    -- { "ray-x/lsp_signature.nvim" }, //Disabled due to bug: https://github.com/ray-x/lsp_signature.nvim/issues/283
 
     { "github/copilot.vim" },
 
