@@ -4,6 +4,8 @@ local metals_config = require("metals").bare_config()
 metals_config.settings = {
     showImplicitArguments = true,
     excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+    -- serverProperties = { "-Xmx5G", "-Dmetals.loglevel=debug", "-Dmetals.statistics=all", "-Djdk.attach.allowAttachSelf" }
+    serverProperties = { "-Xmx12G" }
 }
 
 -- *READ THIS*
