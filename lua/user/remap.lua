@@ -48,7 +48,12 @@ vim.keymap.set("t", "<m-j>", [[<Cmd>wincmd j<CR>]], opts)
 vim.keymap.set("t", "<m-k>", [[<Cmd>wincmd k<CR>]], opts)
 vim.keymap.set("t", "<m-l>", [[<Cmd>wincmd l<CR>]], opts)
 vim.keymap.set("t", "<m-w>", [[<Cmd>wincmd w<CR>]], opts)
-
+--
+-- Resizing panes
+vim.keymap.set("n", "<Left>", ":vertical resize +2<CR>", opts)
+vim.keymap.set("n", "<Right>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<Up>", ":resize -2<CR>", opts)
+vim.keymap.set("n", "<Down>", ":resize +2<CR>", opts)
 
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv", opts)
