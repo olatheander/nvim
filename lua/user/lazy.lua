@@ -17,6 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
     {
+        'olatheander/hello-world-lua-neovim-plugin' -- My own hello-world plugin
+    },
+
+    {
         'nvim-telescope/telescope.nvim',
         dependencies = { { 'nvim-lua/plenary.nvim' } }
     },
@@ -69,13 +73,8 @@ require("lazy").setup({
     { "norcalli/nvim-colorizer.lua" },
     {
         "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            require("indent_blankline").setup({
-                -- for example, context is off by default, use this to turn it on
-                show_current_context = true,
-                show_current_context_start = true,
-            })
-        end,
+        main = "ibl",
+        opts = {}
     },
     { "ldelossa/litee.nvim" },
     { "ldelossa/litee-calltree.nvim" },
@@ -114,7 +113,7 @@ require("lazy").setup({
         }
     },
 
-    -- { "ray-x/lsp_signature.nvim" }, //Disabled due to bug: https://github.com/ray-x/lsp_signature.nvim/issues/283
+    -- { "ray-x/lsp_signature.nvim" }, --Disabled due to bug: https://github.com/ray-x/lsp_signature.nvim/issues/283
 
     { "github/copilot.vim" },
 
