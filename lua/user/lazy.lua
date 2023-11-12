@@ -17,7 +17,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
     {
-        'olatheander/hello-world-lua-neovim-plugin' -- My own hello-world plugin
+        'olatheander/hello-world-lua-neovim-plugin', -- My own hello-world plugin
+        dev = true,
     },
 
     {
@@ -207,4 +208,9 @@ require("lazy").setup({
     },
     { 'tpope/vim-fugitive' },
     { "f-person/git-blame.nvim" }
+}, {
+    dev = {
+        -- directory where you store your local plugin projects
+        path = "~/Git",
+    },
 })
