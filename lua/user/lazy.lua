@@ -22,6 +22,13 @@ require("lazy").setup({
     },
 
     {
+        'andythigpen/nvim-coverage',
+        dependencies = { { 'nvim-lua/plenary.nvim' } },
+        config = function()
+            require("coverage").setup()
+        end,
+    },
+    {
         'nvim-telescope/telescope.nvim',
         dependencies = { { 'nvim-lua/plenary.nvim' } }
     },
@@ -115,6 +122,10 @@ require("lazy").setup({
     },
 
     -- { "ray-x/lsp_signature.nvim" }, --Disabled due to bug: https://github.com/ray-x/lsp_signature.nvim/issues/283
+    {
+        'olatheander/lsp_signature.nvim', -- My own hello-world plugin
+        dev = true,
+    },
 
     { "github/copilot.vim" },
 
