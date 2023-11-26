@@ -12,6 +12,8 @@ vim.keymap.set(
   "<cmd>BufferLineCyclePrev<cr>",
   { noremap = true, silent = true, desc = "Previous Buffer" }
 ) -- Use Meta/Alt not to break CTRL+i (since CTRL+i and Tab is the same thing in terminals)
+vim.keymap.del("n", "<S-h>")
+vim.keymap.del("n", "<S-l>")
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting yanked text" }) -- paste without overwriting yanked text (deleted text to void registry)
