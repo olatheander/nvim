@@ -29,4 +29,29 @@ return {
     },
     opts = { options = { always_show_bufferline = true } },
   },
+
+  {
+    "folke/flash.nvim",
+    keys = {
+      -- disable the default flash keymap
+      { "s", mode = { "n", "x", "o" }, false },
+      { "S", mode = { "n", "x", "o" }, false },
+      {
+        "<M-s>",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "<M-S>",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+    },
+  },
 }
