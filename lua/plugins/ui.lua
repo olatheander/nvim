@@ -10,6 +10,9 @@ return {
     "rcarriga/nvim-notify",
     opts = {
       timeout = 2000,
+      on_open = function(win)
+        vim.api.nvim_win_set_config(win, { focusable = false }) -- Avoid focus on notification when navigating with <C-w> (https://github.com/rcarriga/nvim-notify/issues/182)
+      end,
     },
   },
 
@@ -51,6 +54,54 @@ return {
           require("flash").treesitter()
         end,
         desc = "Flash Treesitter",
+      },
+    },
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    keys = {
+      {
+        "<F2>",
+        function()
+          require("dap").terminate()
+        end,
+        desc = "Terminate",
+      },
+      {
+        "<F5>",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Start/Continue",
+      },
+      {
+        "<F7>",
+        function()
+          require("dap").step_into()
+        end,
+        desc = "Step Into",
+      },
+      {
+        "<S-F7>",
+        function()
+          require("dap").step_out()
+        end,
+        desc = "Step Out",
+      },
+      {
+        "<F8>",
+        function()
+          require("dap").step_over()
+        end,
+        desc = "Step Over",
+      },
+      {
+        "<F9>",
+        function()
+          require("dap").run_to_cursor()
+        end,
+        desc = "Run To Cursor",
       },
     },
   },
