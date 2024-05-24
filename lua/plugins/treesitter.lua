@@ -9,6 +9,7 @@ return {
         "java",
         "javascript",
         "json",
+        "jsonc",
         "lua",
         "markdown",
         "markdown_inline",

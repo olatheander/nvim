@@ -1,9 +1,26 @@
 return {
   {
     "folke/noice.nvim",
-    opts = function(_, opts)
-      opts.presets.lsp_doc_border = true
-    end,
+    opts = {
+      -- routes = {
+      --   {
+      --     filter = {
+      --       event = "lsp",
+      --       kind = "progress",
+      --     },
+      --     view = "messages",
+      --     opts = { skip = true }, -- Don't show LSP progress messages, it's very intrusive.
+      --   },
+      -- },
+      lsp = {
+        progress = {
+          enabled = false, -- Don't show LSP progress messages, it's very intrusive. Perhaps a lualine progress bar would be better.
+        },
+      },
+      presets = {
+        lsp_doc_border = true,
+      },
+    },
   },
 
   {
