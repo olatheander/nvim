@@ -1,0 +1,35 @@
+-- disabling unwanted plugins
+return {
+  -- {
+  --   "folke/trouble.nvim",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "rcarriga/nvim-notify",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "nvimdev/dashboard-nvim",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "lewis6991/gitsigns.nvim",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   enabled = false,
+  -- },
+}

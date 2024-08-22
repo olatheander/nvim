@@ -22,7 +22,11 @@ return {
       metals_config.init_options.statusBarProvider = "on"
 
       -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
-      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local cmp_nvim_lsp_available, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      if cmp_nvim_lsp_available then
+        metals_config.capabilities = cmp_nvim_lsp.default_capabilities()
+      end
+      -- metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Debug settings if you're using nvim-dap
       local dap = require("dap")
