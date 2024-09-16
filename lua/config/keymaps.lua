@@ -16,7 +16,7 @@ vim.keymap.del("n", "<S-h>")
 vim.keymap.del("n", "<S-l>")
 
 -- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting yanked text" }) -- paste without overwriting yanked text (deleted text to void registry)
+-- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting yanked text" }) -- paste without overwriting yanked text (deleted text to void registry)
 
 vim.keymap.set({ "n", "v" }, "<leader>z", [["_d]], { desc = "Delete to void registry" }) -- delete to void registry
 

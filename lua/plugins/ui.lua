@@ -14,7 +14,7 @@ return {
       -- },
       lsp = {
         progress = {
-          enabled = false, -- Don't show LSP progress messages, it's very intrusive. Perhaps a lualine progress bar would be better.
+          -- enabled = false, -- Don't show LSP progress messages, it's very intrusive. Perhaps a lualine progress bar would be better.
         },
       },
       presets = {
