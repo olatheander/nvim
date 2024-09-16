@@ -10,7 +10,7 @@ return {
         "eslint-lsp",
         "java-debug-adapter",
         "java-test",
-        "jdtls",
+        -- "jdtls",
         "js-debug-adapter",
         "json-lsp",
         "lua-language-server",
@@ -35,6 +35,12 @@ return {
             },
           },
         },
+        jdtls = {},
+      },
+      setup = {
+        jdtls = function()
+          return true -- avoid duplicate servers
+        end,
       },
     },
   },
