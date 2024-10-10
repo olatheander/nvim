@@ -5,6 +5,10 @@ return {
   --   enabled = false,
   -- },
   -- {
+  --   "folke/noice.nvim",
+  --   enabled = false,
+  -- },
+  -- {
   --   "hrsh7th/nvim-cmp",
   --   enabled = false,
   -- },
@@ -32,4 +36,12 @@ return {
   --   "lukas-reineke/indent-blankline.nvim",
   --   enabled = false,
   -- },
+  -- {
+  --   "kevinhwang91/nvim-ufo",
+  --   enabled = false,
+  -- },
+  {
+    "mfussenegger/nvim-jdtls", -- Disabled since it it's a big penalty opening the flink project.
+    enabled = false,
+  },
 }
