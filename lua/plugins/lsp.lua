@@ -19,6 +19,7 @@ return {
         "prettier",
         "typescript-language-server",
         "yaml-language-server",
+        "typst-lsp",
       },
     },
   },
@@ -40,6 +41,9 @@ return {
       setup = {
         jdtls = function()
           return true -- avoid duplicate servers
+        end,
+        typst_lsp = function(_, opts)
+          opts.offset_encoding = "utf-8"
         end,
       },
     },
