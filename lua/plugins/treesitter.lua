@@ -11,6 +11,7 @@ return {
         "json",
         "jsonc",
         "lua",
+        "latex",
         "markdown",
         "markdown_inline",
         "python",

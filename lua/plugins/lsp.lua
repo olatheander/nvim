@@ -19,7 +19,8 @@ return {
         "prettier",
         "typescript-language-server",
         "yaml-language-server",
-        "typst-lsp",
+        -- "typst-lsp",
+        -- "tinymist",
       },
     },
   },
@@ -42,9 +43,12 @@ return {
         jdtls = function()
           return true -- avoid duplicate servers
         end,
-        typst_lsp = function(_, opts)
-          opts.offset_encoding = "utf-8"
-        end,
+        -- typst_lsp = function(_, opts)
+        --   opts.offset_encoding = "utf-8"
+        -- end,
+        -- tinymist = function(_, opts)
+        --   opts.offset_encoding = "utf-8"
+        -- end,
       },
     },
   },
