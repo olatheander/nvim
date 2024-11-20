@@ -24,12 +24,13 @@ return {
   },
 
   {
-    "rcarriga/nvim-notify",
+    "folke/snacks.nvim",
     opts = {
-      timeout = 2000,
-      on_open = function(win)
-        vim.api.nvim_win_set_config(win, { focusable = false }) -- Avoid focus on notification when navigating with <C-w> (https://github.com/rcarriga/nvim-notify/issues/182)
-      end,
+      styles = {
+        notification = {
+          focusable = false,
+        },
+      },
     },
   },
 
