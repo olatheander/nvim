@@ -17,6 +17,11 @@ return {
         "markdownlint",
         "marksman",
         "prettier",
+        "pyright",
+        "mypy",
+        "ruff",
+        "black",
+        "debugpy",
         "typescript-language-server",
         "yaml-language-server",
         -- "typst-lsp",
@@ -38,6 +43,7 @@ return {
           },
         },
         jdtls = {},
+        pyright = {},
       },
       setup = {
         jdtls = function()
