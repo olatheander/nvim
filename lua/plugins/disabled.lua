@@ -40,8 +40,8 @@ return {
   --   "kevinhwang91/nvim-ufo",
   --   enabled = false,
   -- },
-  {
-    "mfussenegger/nvim-jdtls", -- Disabled since it it's a big penalty opening the flink project.
-    enabled = false,
-  },
+  -- {
+  --   "mfussenegger/nvim-jdtls", -- Disabled since it it's a big penalty opening the flink project.
+  --   enabled = false,
+  -- },
 }
