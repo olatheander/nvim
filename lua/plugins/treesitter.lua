@@ -5,6 +5,9 @@ return {
       ensure_installed = {
         "bash",
         "c",
+        "gdscript",
+        "godot_resource",
+        "gdshader",
         "html",
         "java",
         "javascript",

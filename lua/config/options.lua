@@ -9,3 +9,9 @@ vim.g.lazyvim_statuscolumn = {
 
 -- Vimtex
 vim.g.vimtex_view_method = "zathura"
+
+-- Godot integration (listen to Godot opening files)
+local godot_project = vim.fs.find({ "project.godot" }, { upward = true })[1]
+if godot_project then
+  vim.fn.serverstart("/tmp/godot.pipe")
+end

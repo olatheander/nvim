@@ -44,6 +44,7 @@ return {
         },
         jdtls = {},
         pyright = {},
+        gdscript = {},
       },
       setup = {
         jdtls = function()
