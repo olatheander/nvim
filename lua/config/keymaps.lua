@@ -23,3 +23,8 @@ vim.keymap.set({ "n", "v" }, "<leader>z", [["_d]], { desc = "Delete to void regi
 -- Better window navigation
 vim.keymap.set("n", "<m-w>", "<C-w>w", { noremap = true, silent = true, desc = "Next window" })
 vim.keymap.set("t", "<m-w>", [[<Cmd>wincmd w<CR>]], { noremap = true, silent = true, desc = "Next window" })
+
+-- Enable half-page jumping while keeping cursor in the middle
+print("Kalle")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
