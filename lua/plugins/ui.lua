@@ -28,7 +28,7 @@ return {
     opts = {
       styles = {
         notification = {
-          focusable = false,
+          focusable = true, -- Disable focus on the messages panel.
         },
       },
     },
