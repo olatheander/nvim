@@ -26,6 +26,7 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      notifier = { enabled = false },
       styles = {
         notification = {
           focusable = true, -- Disable focus on the messages panel.
