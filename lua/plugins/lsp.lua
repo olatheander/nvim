@@ -24,6 +24,7 @@ return {
         "debugpy",
         "typescript-language-server",
         "yaml-language-server",
+        "lemminx",
         -- "typst-lsp",
         -- "tinymist",
       },
