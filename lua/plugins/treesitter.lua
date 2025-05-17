@@ -8,6 +8,7 @@ return {
         "gdscript",
         "godot_resource",
         "gdshader",
+        "haskell",
         "html",
         "java",
         "javascript",
