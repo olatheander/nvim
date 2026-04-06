@@ -11,7 +11,6 @@ vim.pack.add({
   "https://www.github.com/lewis6991/gitsigns.nvim",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    -- branch = "main",
     build = ":TSUpdate",
   },
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
@@ -25,7 +24,6 @@ vim.pack.add({
   {
     src = "https://github.com/saghen/blink.cmp",
     version = vim.version.range("*"),
-    -- branch = "v1",
   },
   {
     src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
@@ -33,6 +31,7 @@ vim.pack.add({
   },
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/MunifTanjim/nui.nvim",
+  "https://github.com/folke/snacks.nvim",
   -- "https://github.com/folke/trouble.nvim"
 })
 

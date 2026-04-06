@@ -134,3 +134,18 @@ end, { desc = "Quickfix List" })
 vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 require("fzf-lua").config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
+
+----------------
+--- Snacks
+----------------
+vim.keymap.set("n", "<leader>.", function()
+  Snacks.scratch()
+end, { desc = "Toggle Scratch Buffer" })
+vim.keymap.set("n", "<leader>S", function()
+  Snacks.scratch.select()
+end, { desc = "Select Scratch Buffer" })
+if vim.fn.executable("lazygit") == 1 then
+  vim.keymap.set("n", "<leader>gg", function()
+    Snacks.lazygit()
+  end, { desc = "Lazygit (cwd)" })
+end
