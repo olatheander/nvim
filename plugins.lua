@@ -7,6 +7,7 @@ vim.pack.add({
   "https://github.com/folke/tokyonight.nvim",
   "https://github.com/christoomey/vim-tmux-navigator",
   "https://github.com/nvim-mini/mini.nvim",
+  "https://github.com/nvim-mini/mini.icons",
   "https://www.github.com/lewis6991/gitsigns.nvim",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -19,25 +20,22 @@ vim.pack.add({
   "https://github.com/f-person/git-blame.nvim",
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/mfussenegger/nvim-lint",
-  -- "https://github.com/folke/trouble.nvim"
-})
-vim.pack.add({
+  "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/rafamadriz/friendly-snippets",
+  {
+    src = "https://github.com/saghen/blink.cmp",
+    version = vim.version.range("*"),
+    -- branch = "v1",
+  },
   {
     src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
     version = vim.version.range("3"),
   },
-  -- dependencies
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/MunifTanjim/nui.nvim",
-  -- optional, but recommended
-  -- "https://github.com/nvim-tree/nvim-web-devicons",
+  -- "https://github.com/folke/trouble.nvim"
 })
-vim.pack.add({
-  {
-    src = "https://github.com/ibhagwan/fzf-lua",
-  },
-  "https://github.com/nvim-mini/mini.icons",
-})
+
 require("mini.icons").setup({})
 MiniIcons.mock_nvim_web_devicons()
 -- MiniIcons.tweak_lsp_kind() -- activating this messes up the fzf-lua symbol_fmt ued by the symbol piceker configured below but adds icons to the completion picker.
@@ -61,7 +59,7 @@ require("mini.pairs").setup({})
 require("mini.trailspace").setup({})
 require("mini.bufremove").setup({})
 require("mini.notify").setup({})
-require("mini.completion").setup({})
+-- require("mini.completion").setup({}) -- trying out blink.cmp for a bit.
 require("mini.tabline").setup({})
 require("mini.statusline").setup({})
 require("oil").setup({})
@@ -127,6 +125,21 @@ require("conform").setup({
     -- These options will be passed to conform.format()
     timeout_ms = 500,
     lsp_format = "fallback",
+  },
+})
+require("blink.cmp").setup({
+  keymap = { preset = "default" },
+  appearance = {
+    nerd_font_variant = "mono",
+  },
+  completion = {
+    documentation = { auto_show = false },
+  },
+  sources = {
+    default = { "lsp", "path", "snippets", "buffer" },
+  },
+  fuzzy = {
+    implementation = "prefer_rust_with_warning",
   },
 })
 -- require('trouble').setup({})
