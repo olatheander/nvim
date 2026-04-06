@@ -74,17 +74,17 @@ vim.o.tabstop = 2
 vim.o.expandtab = true
 vim.o.smartindent = true
 
-vim.opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
-}
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = "indent"
-vim.opt.foldtext = ""
+-- vim.opt.fillchars = {
+--   foldopen = "",
+--   foldclose = "",
+--   fold = " ",
+--   foldsep = " ",
+--   diff = "╱",
+--   eob = " ",
+-- }
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldmethod = "indent"
+-- vim.opt.foldtext = ""
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)

@@ -120,3 +120,17 @@ vim.keymap.set("n", "<leader>bd", function()
 end, { desc = "Delete Buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bnext<cr>", { noremap = true, silent = true, desc = "Next Buffer" })
 vim.keymap.set("n", "<M-Tab>", "<cmd>bprevious<cr>", { noremap = true, silent = true, desc = "Previous Buffer" }) -- Use Meta/Alt not to break CTRL+i (since CTRL+i and Tab is the same thing in terminals)
+
+----------------
+--- Quickfix
+----------------
+vim.keymap.set("n", "<leader>xq", function()
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Quickfix List" })
+
+vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
+vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+require("fzf-lua").config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"

@@ -1,6 +1,5 @@
 -- [[ Configure and install plugins ]]
 vim.pack.add({
-  "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/stevearc/oil.nvim",
@@ -41,8 +40,17 @@ vim.pack.add({
 })
 require("mini.icons").setup({})
 MiniIcons.mock_nvim_web_devicons()
-MiniIcons.tweak_lsp_kind()
-require("fzf-lua").setup({})
+-- MiniIcons.tweak_lsp_kind() -- activating this messes up the fzf-lua symbol_fmt ued by the symbol piceker configured below but adds icons to the completion picker.
+require("fzf-lua").setup({
+  lsp = {
+    symbols = {
+      symbol_fmt = function(s)
+        return s:lower() .. "\t"
+      end,
+      child_prefix = false,
+    },
+  },
+})
 require("mini.ai").setup({})
 require("mini.comment").setup({})
 require("mini.move").setup({})

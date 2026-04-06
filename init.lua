@@ -8,8 +8,8 @@ vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = false
 
 require("options")
-require("keymaps")
 require("plugins")
+require("keymaps")
 require("autocmds")
 require("lsp")
 
