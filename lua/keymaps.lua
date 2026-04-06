@@ -14,15 +14,13 @@ vim.keymap.set("n", "<m-w>", "<C-w>w", { noremap = true, silent = true, desc = "
 vim.keymap.set("t", "<m-w>", [[<Cmd>wincmd w<CR>]], { noremap = true, silent = true, desc = "Next window" })
 
 -- Save file
-vim.keymap.set("i", "<C-s>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" })
+vim.keymap.set("i", "<C-\\>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" }) -- C-s collides with default LSP signature_help() mapping.
 vim.keymap.set("n", "<C-s>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" })
 
 -- Enable half-page jumping while keeping cursor in the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move down while keeping cursor in the middle" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move up while keeping cursor in the middle" })
 
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
--- vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" }) -- replaced by FzfLua help_tags below
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
@@ -33,6 +31,12 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase w
 -- vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 -- vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
+-- commenting
+vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+-- new file
+vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 ----------------
 --- Neotree
 ----------------
@@ -112,6 +116,11 @@ vim.keymap.set("n", "<leader>sS", function()
   require("fzf-lua").lsp_live_workspace_symbols()
 end, { desc = "Goto Symbol (Workspace)" })
 
+-- windows
+vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
+vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+
 ----------------
 --- Buffers
 ----------------
@@ -136,6 +145,16 @@ vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 require("fzf-lua").config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
 
 ----------------
+--- Formatting
+----------------
+vim.keymap.set({ "n", "x" }, "<leader>cF", function()
+  require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
+end, { desc = "Format Injected Langs" })
+vim.keymap.set({ "n", "x" }, "<leader>cf", function()
+  require("conform").format({ timeout_ms = 3000 })
+end, { desc = "Format" })
+
+----------------
 --- Snacks
 ----------------
 vim.keymap.set("n", "<leader>.", function()
@@ -149,3 +168,48 @@ if vim.fn.executable("lazygit") == 1 then
     Snacks.lazygit()
   end, { desc = "Lazygit (cwd)" })
 end
+Snacks.toggle
+  .new({
+    name = "Auto Format (Global)",
+    get = function()
+      return not vim.g.disable_autoformat
+    end,
+    set = function(state)
+      vim.g.disable_autoformat = not state
+    end,
+  })
+  :map("<leader>uf")
+Snacks.toggle
+  .new({
+    name = "Auto Format (Buffer)",
+    get = function()
+      return not vim.b.disable_autoformat
+    end,
+    set = function(state)
+      vim.b.disable_autoformat = not state
+    end,
+  })
+  :map("<leader>uF")
+if vim.lsp.inlay_hint then
+  Snacks.toggle.inlay_hints():map("<leader>uh")
+end
+vim.keymap.set("n", "<leader>gl", function()
+  Snacks.picker.git_log()
+end, { desc = "Git Log (cwd)" })
+vim.keymap.set("n", "<leader>gb", function()
+  Snacks.picker.git_log_line()
+end, { desc = "Git Blame Line" })
+vim.keymap.set("n", "<leader>gf", function()
+  Snacks.picker.git_log_file()
+end, { desc = "Git Current File History" })
+vim.keymap.set({ "n", "x" }, "<leader>gB", function()
+  Snacks.gitbrowse()
+end, { desc = "Git Browse (open)" })
+vim.keymap.set({ "n", "x" }, "<leader>gY", function()
+  Snacks.gitbrowse({
+    open = function(url)
+      vim.fn.setreg("+", url)
+    end,
+    notify = false,
+  })
+end, { desc = "Git Browse (copy)" })

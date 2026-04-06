@@ -32,6 +32,7 @@ vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/MunifTanjim/nui.nvim",
   "https://github.com/folke/snacks.nvim",
+  "https://github.com/mfussenegger/nvim-jdtls",
   -- "https://github.com/folke/trouble.nvim"
 })
 
@@ -120,11 +121,12 @@ require("conform").setup({
     -- Conform will run the first available formatter
     javascript = { "prettierd", "prettier", stop_after_first = true },
   },
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 500,
-    lsp_format = "fallback",
-  },
+  format_on_save = function(bufnr)
+    if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+      return
+    end
+    return { timeout_ms = 500, lsp_format = "fallback" }
+  end,
 })
 require("blink.cmp").setup({
   keymap = { preset = "default" },
@@ -141,4 +143,5 @@ require("blink.cmp").setup({
     implementation = "prefer_rust_with_warning",
   },
 })
+require("snacks").setup({})
 -- require('trouble').setup({})
