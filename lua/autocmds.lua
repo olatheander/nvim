@@ -28,6 +28,14 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
+  desc = "Run linters on write",
+  group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Enable LSP folding when supported",
   group = vim.api.nvim_create_augroup("lsp-folding", { clear = true }),

@@ -51,6 +51,10 @@ vim.lsp.config("gopls", {
   },
 })
 vim.lsp.config("clangd", {})
+vim.lsp.config("yamlls", {})
+vim.lsp.config("jsonls", {})
+vim.lsp.config("marksman", {})
+vim.lsp.config("eslint", {})
 
 vim.lsp.enable({
   "lua_ls",
@@ -59,4 +63,8 @@ vim.lsp.enable({
   "ts_ls",
   "gopls",
   "clangd",
+  "yamlls",
+  "jsonls",
+  "marksman",
+  "eslint",
 })

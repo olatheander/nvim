@@ -8,6 +8,7 @@ require("options")
 require("plugins")
 require("keymaps")
 require("autocmds")
+require("commands")
 require("lsp")
 
 -- Diagnostic Config & Keymaps

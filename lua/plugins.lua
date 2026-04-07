@@ -116,6 +116,7 @@ require("gitblame").setup({})
 require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
+    sh = { "shfmt" },
     -- Conform will run multiple formatters sequentially
     python = { "isort", "black" },
     -- You can customize some of the format options for the filetype (:help conform.format)
@@ -130,6 +131,11 @@ require("conform").setup({
     return { timeout_ms = 500, lsp_format = "fallback" }
   end,
 })
+require("lint").linters_by_ft = {
+  sh = { "shellcheck" },
+  markdown = { "markdownlint" },
+  python = { "mypy", "ruff" },
+}
 require("blink.cmp").setup({
   keymap = { preset = "default" },
   appearance = {
