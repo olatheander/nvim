@@ -62,7 +62,9 @@ require("mini.notify").setup({})
 -- require("mini.completion").setup({}) -- trying out blink.cmp for a bit.
 require("mini.tabline").setup({})
 require("mini.statusline").setup({})
-require("oil").setup({})
+require("oil").setup({
+  default_file_explorer = false, -- Let neo-tree handle directory buffers
+})
 require("neo-tree").setup({
   filesystem = {
     bind_to_cwd = false,

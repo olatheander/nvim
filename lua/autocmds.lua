@@ -20,6 +20,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.api.nvim_create_autocmd("VimEnter", {
+  desc = "Open neo-tree on startup",
+  group = vim.api.nvim_create_augroup("neotree-open", { clear = true }),
+  callback = function()
+    require("neo-tree.command").execute({ action = "show", dir = vim.uv.cwd() })
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Enable LSP folding when supported",
   group = vim.api.nvim_create_augroup("lsp-folding", { clear = true }),
