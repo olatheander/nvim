@@ -9,6 +9,10 @@ vim.g.have_nerd_font = false
 -- Disable netrw so neo-tree is the only file explorer
 vim.g.loaded_netrwPlugin = 1
 
+-- Spell checking
+vim.o.spell = true
+vim.o.spelllang = "en_us,sv"
+
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.

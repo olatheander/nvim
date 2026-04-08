@@ -37,6 +37,22 @@ vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = 
 
 -- new file
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
+vim.keymap.set("n", "<leader>uS", function()
+  local langs = { "en_us", "sv", "en_us,sv" }
+  local current = vim.o.spelllang
+  for i, lang in ipairs(langs) do
+    if lang == current then
+      local next = langs[(i % #langs) + 1]
+      vim.o.spelllang = next
+      vim.notify("Spell language: " .. next)
+      return
+    end
+  end
+  vim.o.spelllang = langs[1]
+  vim.notify("Spell language: " .. langs[1])
+end, { desc = "Cycle Spell Language" })
+
 ----------------
 --- Neotree
 ----------------
@@ -193,6 +209,17 @@ Snacks.toggle
 if vim.lsp.inlay_hint then
   Snacks.toggle.inlay_hints():map("<leader>uh")
 end
+Snacks.toggle
+  .new({
+    name = "Spell Check",
+    get = function()
+      return vim.o.spell
+    end,
+    set = function(state)
+      vim.o.spell = state
+    end,
+  })
+  :map("<leader>us")
 vim.keymap.set("n", "<leader>gl", function()
   Snacks.picker.git_log()
 end, { desc = "Git Log (cwd)" })
