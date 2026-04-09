@@ -42,6 +42,11 @@ vim.keymap.set("n", "<leader>up", function()
   vim.pack.update()
 end, { desc = "Update Plugins" })
 
+vim.keymap.set("n", "<leader>uw", function()
+  vim.o.wrap = not vim.o.wrap
+  vim.notify("Line wrap: " .. (vim.o.wrap and "on" or "off"))
+end, { desc = "Toggle Line Wrap" })
+
 vim.keymap.set("n", "<leader>uS", function()
   local langs = { "en_us", "sv", "en_us,sv" }
   local current = vim.o.spelllang
