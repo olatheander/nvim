@@ -38,6 +38,10 @@ vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = 
 -- new file
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
+vim.keymap.set("n", "<leader>up", function()
+  vim.pack.update()
+end, { desc = "Update Plugins" })
+
 vim.keymap.set("n", "<leader>uS", function()
   local langs = { "en_us", "sv", "en_us,sv" }
   local current = vim.o.spelllang
