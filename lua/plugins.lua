@@ -33,6 +33,10 @@ vim.pack.add({
   "https://github.com/MunifTanjim/nui.nvim",
   "https://github.com/folke/snacks.nvim",
   "https://github.com/mfussenegger/nvim-jdtls",
+  {
+    src = "https://github.com/iamcco/markdown-preview.nvim",
+    build = ":call mkdp#util#install()",
+  },
   -- "https://github.com/folke/trouble.nvim"
 })
 

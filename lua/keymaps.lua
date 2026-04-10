@@ -172,6 +172,7 @@ require("fzf-lua").config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
 ----------------
 --- Formatting
 ----------------
+vim.keymap.set("n", "<leader>cp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 vim.keymap.set({ "n", "x" }, "<leader>cF", function()
   require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
 end, { desc = "Format Injected Langs" })
