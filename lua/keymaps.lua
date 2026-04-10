@@ -37,6 +37,7 @@ vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = 
 
 -- new file
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>", { desc = "Oil" })
 
 vim.keymap.set("n", "<leader>up", function()
   vim.pack.update()
@@ -168,6 +169,13 @@ end, { desc = "Quickfix List" })
 vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 require("fzf-lua").config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+vim.keymap.set(
+  "n",
+  "<leader>xX",
+  "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+  { desc = " Buffer Diagnostics (Trouble)" }
+)
 
 ----------------
 --- Formatting

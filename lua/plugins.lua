@@ -37,7 +37,7 @@ vim.pack.add({
     src = "https://github.com/iamcco/markdown-preview.nvim",
     build = ":call mkdp#util#install()",
   },
-  -- "https://github.com/folke/trouble.nvim"
+  "https://github.com/folke/trouble.nvim",
 })
 
 require("mini.icons").setup({})
@@ -79,6 +79,13 @@ require("mini.tabline").setup({})
 require("mini.statusline").setup({})
 require("oil").setup({
   default_file_explorer = false, -- Let neo-tree handle directory buffers
+  columns = {
+    "permissions",
+    "icon",
+  },
+  view_options = {
+    show_hidden = true,
+  },
 })
 require("neo-tree").setup({
   filesystem = {
