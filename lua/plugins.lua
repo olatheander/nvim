@@ -38,6 +38,7 @@ vim.pack.add({
     build = ":call mkdp#util#install()",
   },
   "https://github.com/folke/trouble.nvim",
+  "https://github.com/folke/flash.nvim",
 })
 
 require("mini.icons").setup({})
@@ -173,5 +174,6 @@ require("blink.cmp").setup({
     implementation = "prefer_rust_with_warning",
   },
 })
+require("flash").setup({})
 require("snacks").setup({})
 -- require('trouble').setup({})
