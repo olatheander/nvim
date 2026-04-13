@@ -27,7 +27,7 @@ vim.keymap.set("t", "<m-w>", [[<Cmd>wincmd w<CR>]], { noremap = true, silent = t
 
 -- Save file
 vim.keymap.set("i", "<C-\\>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" }) -- C-s collides with default LSP signature_help() mapping.
-vim.keymap.set("n", "<C-s>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" })
+vim.keymap.set("n", "<C-\\>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" })
 
 -- Enable half-page jumping while keeping cursor in the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move down while keeping cursor in the middle" })

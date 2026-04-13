@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("neotree-open", { clear = true }),
   callback = function()
     require("neo-tree.command").execute({ action = "show", dir = vim.uv.cwd() })
-    vim.cmd("wincmd p") -- move focus to buffer instead of Neotree.
+    -- vim.cmd("wincmd p") -- move focus to buffer instead of Neotree.
   end,
 })
 
