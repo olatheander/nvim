@@ -9,6 +9,18 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set({ "n", "v" }, "<leader>p", [["_dP]], { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "<leader>z", [["_d]], { desc = "Delete to void registry" })
 
+-- Yank file path to clipboard
+vim.keymap.set("n", "<leader>yf", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy File Path (Relative)" })
+vim.keymap.set("n", "<leader>yF", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy File Path (Absolute)" })
+
 -- Better window navigation
 vim.keymap.set("n", "<m-w>", "<C-w>w", { noremap = true, silent = true, desc = "Next window" })
 vim.keymap.set("t", "<m-w>", [[<Cmd>wincmd w<CR>]], { noremap = true, silent = true, desc = "Next window" })
@@ -153,6 +165,9 @@ vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = tr
 vim.keymap.set("n", "<leader>bd", function()
   require("mini.bufremove").delete()
 end, { desc = "Delete Buffer" })
+vim.keymap.set("n", "<leader>bo", function()
+  Snacks.bufdelete.other()
+end, { desc = "Delete Other Buffers" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bnext<cr>", { noremap = true, silent = true, desc = "Next Buffer" })
 vim.keymap.set("n", "<M-Tab>", "<cmd>bprevious<cr>", { noremap = true, silent = true, desc = "Previous Buffer" }) -- Use Meta/Alt not to break CTRL+i (since CTRL+i and Tab is the same thing in terminals)
 
