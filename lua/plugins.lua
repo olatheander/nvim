@@ -54,7 +54,18 @@ require("fzf-lua").setup({
     },
   },
 })
-require("mini.ai").setup({})
+local ai = require("mini.ai")
+require("mini.ai").setup({
+  n_lines = 500,
+  custom_textobjects = {
+    f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+    c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
+    o = ai.gen_spec.treesitter({
+      a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+      i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+    }),
+  },
+})
 require("mini.comment").setup({})
 require("mini.move").setup({})
 require("mini.surround").setup({
@@ -133,7 +144,7 @@ require("gitsigns").setup({
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
   end,
 })
-require("nvim-treesitter").setup({})
+require("nvim-treesitter-textobjects").setup({})
 require("mason").setup({})
 require("gitblame").setup({})
 require("conform").setup({
