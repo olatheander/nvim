@@ -29,6 +29,12 @@ vim.keymap.set("t", "<m-w>", [[<Cmd>wincmd w<CR>]], { noremap = true, silent = t
 vim.keymap.set("i", "<C-\\>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" }) -- C-s collides with default LSP signature_help() mapping.
 vim.keymap.set("n", "<C-\\>", [[<Cmd>w<CR><Esc>]], { desc = "Save file" })
 
+-- tmux navigator (vim.g.tmux_navigator_no_mappings disables plugin defaults)
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Navigate Left" })
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Navigate Down" })
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Navigate Up" })
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate Right" })
+
 -- Enable half-page jumping while keeping cursor in the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move down while keeping cursor in the middle" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move up while keeping cursor in the middle" })

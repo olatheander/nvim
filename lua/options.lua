@@ -9,6 +9,9 @@ vim.g.have_nerd_font = false
 -- Disable netrw so neo-tree is the only file explorer
 vim.g.loaded_netrwPlugin = 1
 
+-- Disable vim-tmux-navigator default mappings (we set our own in keymaps.lua)
+vim.g.tmux_navigator_no_mappings = 1
+
 -- Spell checking
 vim.o.spell = true
 vim.o.spelllang = "en_us,sv"
