@@ -169,4 +169,4 @@ require("blink.cmp").setup({
 })
 require("flash").setup({})
 require("snacks").setup({})
--- require('trouble').setup({})
+require("trouble").setup({})
