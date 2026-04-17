@@ -147,24 +147,6 @@ require("gitsigns").setup({
 require("nvim-treesitter-textobjects").setup({})
 require("mason").setup({})
 require("gitblame").setup({})
-require("conform").setup({
-  formatters_by_ft = {
-    lua = { "stylua" },
-    sh = { "shfmt" },
-    -- Conform will run multiple formatters sequentially
-    python = { "isort", "black" },
-    -- You can customize some of the format options for the filetype (:help conform.format)
-    rust = { "rustfmt", lsp_format = "fallback" },
-    -- Conform will run the first available formatter
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-  },
-  format_on_save = function(bufnr)
-    if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-      return
-    end
-    return { timeout_ms = 500, lsp_format = "fallback" }
-  end,
-})
 require("lint").linters_by_ft = {
   sh = { "shellcheck" },
   markdown = { "markdownlint" },
