@@ -15,6 +15,7 @@ vim.g.tmux_navigator_no_mappings = 1
 -- Spell checking
 vim.o.spell = true
 vim.o.spelllang = "en_us,sv"
+vim.opt.spelloptions:append({ "noplainbuffer", "camel" })
 
 -- Make line numbers default
 vim.o.number = true
