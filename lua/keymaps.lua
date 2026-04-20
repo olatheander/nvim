@@ -189,6 +189,11 @@ vim.keymap.set("n", "<leader>sk", "<cmd>FzfLua keymaps<cr>", { desc = "Key Maps"
 vim.keymap.set("n", "<leader>sl", "<cmd>FzfLua loclist<cr>", { desc = "Location List" })
 vim.keymap.set("n", "<leader>sM", "<cmd>FzfLua man_pages<cr>", { desc = "Man Pages" })
 vim.keymap.set("n", "<leader>sm", "<cmd>FzfLua marks<cr>", { desc = "Jump to Mark" })
+vim.keymap.set("n", "<leader>sn", function()
+  local messages = vim.api.nvim_exec2("messages", { output = true }).output
+  local lines = vim.split(messages, "\n")
+  require("fzf-lua").fzf_exec(lines, { prompt = "Messages> " })
+end, { desc = "Messages" })
 vim.keymap.set("n", "<leader>sR", "<cmd>FzfLua resume<cr>", { desc = "Resume" })
 vim.keymap.set("n", "<leader>sq", "<cmd>FzfLua quickfix<cr>", { desc = "Quickfix List" })
 vim.keymap.set("n", "<leader>sw", "<cmd>FzfLua grep_cword<cr>", { desc = "Word (Root Dir)" })
@@ -306,6 +311,9 @@ Snacks.toggle
     end,
   })
   :map("<leader>us")
+vim.keymap.set("n", "<leader>un", function()
+  MiniNotify.clear()
+end, { desc = "Dismiss All Notifications" })
 vim.keymap.set("n", "<leader>gl", function()
   Snacks.picker.git_log()
 end, { desc = "Git Log (cwd)" })
