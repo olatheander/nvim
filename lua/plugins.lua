@@ -105,6 +105,19 @@ require("neo-tree").setup({
     follow_current_file = { enabled = true },
     use_libuv_file_watcher = true,
   },
+  window = {
+    mappings = {
+      ["<space>"] = "none", -- to allow <leader>-prefixed actions to be performed when tree has focus.
+      ["l"] = "open",
+      ["h"] = "close_node",
+      ["Y"] = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        vim.fn.setreg("+", path)
+        vim.notify("Copied: " .. path)
+      end,
+    },
+  },
 })
 require("gitsigns").setup({
   on_attach = function(buffer)
