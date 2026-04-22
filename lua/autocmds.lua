@@ -37,6 +37,16 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "FocusGained", "CursorHold" }, {
+  desc = "Check for file changes when focus is gained or cursor is idle",
+  group = vim.api.nvim_create_augroup("checktime", { clear = true }),
+  callback = function()
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Enable LSP folding when supported",
   group = vim.api.nvim_create_augroup("lsp-folding", { clear = true }),
