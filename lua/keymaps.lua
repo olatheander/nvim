@@ -202,7 +202,10 @@ vim.keymap.set("n", "<leader>sn", function()
     local msg = (notif.msg or ""):gsub("\n", " │ ")
     table.insert(lines, string.format("%s │ %-5s │ %s", timestamp, notif.level, msg))
   end
-  require("fzf-lua").fzf_exec(lines, { prompt = "Notifications> " })
+  require("fzf-lua").fzf_exec(lines, {
+    prompt = "> ",
+    winopts = { title = " Notifications " },
+  })
 end, { desc = "Notification History" })
 vim.keymap.set("n", "<leader>sR", "<cmd>FzfLua resume<cr>", { desc = "Resume" })
 vim.keymap.set("n", "<leader>sq", "<cmd>FzfLua quickfix<cr>", { desc = "Quickfix List" })
