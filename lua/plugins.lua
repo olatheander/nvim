@@ -44,6 +44,7 @@ vim.pack.add({
   "https://github.com/nvim-neotest/nvim-nio",
   "https://github.com/theHamsta/nvim-dap-virtual-text",
   "https://github.com/mfussenegger/nvim-dap-python",
+  "https://github.com/gbprod/yanky.nvim",
 })
 
 require("mini.icons").setup({})
@@ -59,6 +60,7 @@ require("fzf-lua").setup({
     },
   },
 })
+require("fzf-lua").register_ui_select()
 local ai = require("mini.ai")
 require("mini.ai").setup({
   n_lines = 500,
@@ -186,5 +188,8 @@ require("blink.cmp").setup({
   },
 })
 require("flash").setup({})
+require("yanky").setup({
+  highlight = { timer = 150 },
+})
 require("snacks").setup({})
 require("trouble").setup({})

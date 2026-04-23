@@ -5,8 +5,7 @@
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Paste & Delete to void registry
-vim.keymap.set({ "n", "v" }, "<leader>p", [["_dP]], { desc = "Paste without yanking" })
+-- Delete to void registry
 vim.keymap.set({ "n", "v" }, "<leader>z", [["_d]], { desc = "Delete to void registry" })
 
 -- Yank file path to clipboard
@@ -426,3 +425,17 @@ end, { desc = "Toggle DAP UI" })
 vim.keymap.set({ "n", "x" }, "<leader>de", function()
   require("dapui").eval()
 end, { desc = "Eval" })
+
+----------------
+--- Yanky
+----------------
+vim.keymap.set({ "n", "x" }, "<leader>p", function()
+  vim.cmd("YankyRingHistory")
+end, { desc = "Yank History" })
+vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "Yank Text" })
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put After" })
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put Before" })
+vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", { desc = "Put After Selection" })
+vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", { desc = "Put Before Selection" })
+vim.keymap.set("n", "[y", "<Plug>(YankyCycleForward)", { desc = "Cycle Forward Through Yank History" })
+vim.keymap.set("n", "]y", "<Plug>(YankyCycleBackward)", { desc = "Cycle Backward Through Yank History" })
