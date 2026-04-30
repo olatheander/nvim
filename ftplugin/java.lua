@@ -28,7 +28,7 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/" .. project_name .. "/workspace"
 
 local config = {
-  cmd = { "jdtls", "-data", workspace_dir },
+  cmd = { "jdtls", "--data", workspace_dir },
   root_dir = vim.fs.root(0, { "gradlew", "mvnw", "pom.xml", "build.gradle", ".git" }),
   settings = {
     java = {
@@ -42,7 +42,7 @@ local config = {
   },
   init_options = {
     bundles = bundles,
-    extendedClientCapabilities = require("jdtls.capabilities"),
+    extendedClientCapabilities = jdtls.extendedClientCapabilities,
   },
   on_attach = function(_, buf)
     -- Setup DAP integration if java-debug-adapter is available
