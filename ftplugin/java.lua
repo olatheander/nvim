@@ -29,7 +29,7 @@ local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/" .. project_name .. "/
 
 local config = {
   cmd = { "jdtls", "--data", workspace_dir },
-  root_dir = vim.fs.root(0, { "gradlew", "mvnw", "pom.xml", "build.gradle", ".git" }),
+  root_dir = vim.fs.root(0, { "gradlew", "mvnw", "pom.xml", "build.gradle", "build.gradle.kts", ".git" }),
   settings = {
     java = {
       inlayHints = {
