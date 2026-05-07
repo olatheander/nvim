@@ -141,6 +141,26 @@ end, { desc = "Git Explorer" })
 vim.keymap.set("n", "<leader>be", function()
   require("neo-tree.command").execute({ source = "buffers", toggle = true })
 end, { desc = "Buffer Explorer" })
+
+----------------
+--- LSP (FzfLua overrides)
+----------------
+vim.keymap.set(
+  "n",
+  "grr",
+  "<cmd>FzfLua lsp_references jump1=true ignore_current_line=true<cr>",
+  { desc = "References", nowait = true }
+)
+vim.keymap.set(
+  "n",
+  "gri",
+  "<cmd>FzfLua lsp_implementations jump1=true<cr>",
+  { desc = "Implementations", nowait = true }
+)
+vim.keymap.set("n", "grt", "<cmd>FzfLua lsp_typedefs jump1=true<cr>", { desc = "Type Definitions", nowait = true })
+vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions jump1=true<cr>", { desc = "Definitions", nowait = true })
+vim.keymap.set("n", "gD", "<cmd>FzfLua lsp_declarations jump1=true<cr>", { desc = "Declarations", nowait = true })
+
 ----------------
 --- FZF
 ----------------
