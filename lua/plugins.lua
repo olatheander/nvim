@@ -107,6 +107,7 @@ require("oil").setup({
   },
 })
 require("neo-tree").setup({
+  close_if_last_window = true,
   filesystem = {
     bind_to_cwd = false,
     follow_current_file = { enabled = true },
