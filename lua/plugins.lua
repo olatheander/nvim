@@ -51,6 +51,9 @@ require("mini.icons").setup({})
 MiniIcons.mock_nvim_web_devicons()
 -- MiniIcons.tweak_lsp_kind() -- activating this messes up the fzf-lua symbol_fmt ued by the symbol piceker configured below but adds icons to the completion picker.
 require("fzf-lua").setup({
+  defaults = {
+    cwd_prompt = false,
+  },
   lsp = {
     symbols = {
       symbol_fmt = function(s)

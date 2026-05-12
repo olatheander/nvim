@@ -56,6 +56,7 @@ vim.lsp.config("jsonls", {})
 vim.lsp.config("marksman", {})
 vim.lsp.config("eslint", {})
 vim.lsp.config("kotlin_language_server", {})
+vim.lsp.config("sqls", {})
 
 vim.lsp.enable({
   "lua_ls",
@@ -69,4 +70,5 @@ vim.lsp.enable({
   "marksman",
   "eslint",
   "kotlin_language_server",
+  "sqls",
 })
