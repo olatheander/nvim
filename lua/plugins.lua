@@ -45,6 +45,7 @@ vim.pack.add({
   "https://github.com/theHamsta/nvim-dap-virtual-text",
   "https://github.com/mfussenegger/nvim-dap-python",
   "https://github.com/gbprod/yanky.nvim",
+  "https://github.com/chentoast/marks.nvim",
 })
 
 require("mini.icons").setup({})
@@ -195,27 +196,28 @@ require("flash").setup({})
 require("yanky").setup({
   highlight = { timer = 150 },
 })
+require("marks").setup({})
 require("which-key").setup({
   spec = {
-    { "<leader>b",  group = "buffers" },
-    { "<leader>c",  group = "code" },
+    { "<leader>b", group = "buffers" },
+    { "<leader>c", group = "code" },
     { "<leader>cx", group = "extract" },
-    { "<leader>d",  group = "debug" },
-    { "<leader>f",  group = "file/find" },
-    { "<leader>g",  group = "git" },
+    { "<leader>d", group = "debug" },
+    { "<leader>f", group = "file/find" },
+    { "<leader>g", group = "git" },
     { "<leader>gh", group = "hunks" },
-    { "<leader>p",  group = "yank history" },
-    { "<leader>s",  group = "search" },
-    { "<leader>t",  group = "test" },
-    { "<leader>u",  group = "ui" },
-    { "<leader>w",  group = "windows" },
-    { "<leader>x",  group = "diagnostics/quickfix" },
-    { "<leader>y",  group = "yank path" },
-    { "[",          group = "prev" },
-    { "]",          group = "next" },
-    { "g",          group = "goto" },
-    { "gr",         group = "lsp" },
-    { "gs",         group = "surround" },
+    { "<leader>p", group = "yank history" },
+    { "<leader>s", group = "search" },
+    { "<leader>t", group = "test" },
+    { "<leader>u", group = "ui" },
+    { "<leader>w", group = "windows" },
+    { "<leader>x", group = "diagnostics/quickfix" },
+    { "<leader>y", group = "yank path" },
+    { "[", group = "prev" },
+    { "]", group = "next" },
+    { "g", group = "goto" },
+    { "gr", group = "lsp" },
+    { "gs", group = "surround" },
   },
 })
 require("snacks").setup({})
