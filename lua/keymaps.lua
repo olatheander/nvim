@@ -5,6 +5,10 @@
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- Keep visual selection after indenting
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
+
 -- Delete to void registry
 vim.keymap.set({ "n", "v" }, "<leader>z", [["_d]], { desc = "Delete to void registry" })
 
