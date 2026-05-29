@@ -344,6 +344,20 @@ Snacks.toggle
 if vim.lsp.inlay_hint then
   Snacks.toggle.inlay_hints():map("<leader>uh")
 end
+if vim.lsp.codelens then
+  -- Snacks.toggle.codelens():map("<leader>uc")
+  Snacks.toggle
+    .new({
+      name = "Codelens",
+      get = function()
+        return vim.lsp.codelens.is_enabled()
+      end,
+      set = function(state)
+        vim.lsp.codelens.enable(state)
+      end,
+    })
+    :map("<leader>uc")
+end
 Snacks.toggle
   .new({
     name = "Spell Check",
@@ -378,6 +392,15 @@ vim.keymap.set({ "n", "x" }, "<leader>gY", function()
     notify = false,
   })
 end, { desc = "Git Browse (copy)" })
+vim.keymap.set("n", "<leader>cl", function()
+  Snacks.picker.lsp_config()
+end, { desc = "Lsp Info" })
+vim.keymap.set("n", "<leader>ci", function()
+  Snacks.picker.lsp_incoming_calls()
+end, { desc = "C[a]lls Incoming" })
+vim.keymap.set("n", "<leader>co", function()
+  Snacks.picker.lsp_outgoing_calls()
+end, { desc = "C[a]lls Outgoing" })
 
 ----------------
 --- DAP
