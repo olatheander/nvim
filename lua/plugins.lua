@@ -42,6 +42,9 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-dap",
   "https://github.com/rcarriga/nvim-dap-ui",
   "https://github.com/nvim-neotest/nvim-nio",
+  "https://github.com/nvim-neotest/neotest",
+  "https://github.com/nvim-neotest/neotest-jest",
+  "https://github.com/marilari88/neotest-vitest",
   "https://github.com/theHamsta/nvim-dap-virtual-text",
   "https://github.com/mfussenegger/nvim-dap-python",
   "https://github.com/gbprod/yanky.nvim",
@@ -222,3 +225,9 @@ require("which-key").setup({
 })
 require("snacks").setup({})
 require("trouble").setup({})
+require("neotest").setup({
+  adapters = {
+    require("neotest-vitest")({}),
+    require("neotest-jest")({}),
+  },
+})

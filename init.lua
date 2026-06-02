@@ -48,4 +48,6 @@ vim.diagnostic.config({
   },
 })
 
+vim.lsp.codelens.enable(true)
+
 vim.cmd.colorscheme("tokyonight")
