@@ -168,6 +168,23 @@ vim.keymap.set("n", "gD", "<cmd>FzfLua lsp_declarations jump1=true<cr>", { desc 
 ----------------
 --- FZF
 ----------------
+local focus_real_window_for_search = function()
+  if vim.bo.filetype ~= "neo-tree" then
+    return
+  end
+
+  local current_win = vim.api.nvim_get_current_win()
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if win ~= current_win then
+      local buf = vim.api.nvim_win_get_buf(win)
+      if vim.bo[buf].filetype ~= "neo-tree" and vim.bo[buf].buftype == "" then
+        vim.api.nvim_set_current_win(win)
+        return
+      end
+    end
+  end
+end
+
 vim.keymap.set("n", "<leader>,", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", { desc = "Switch Buffer" })
 -- Grep & general
 vim.keymap.set("n", "<leader>/", function()
@@ -206,9 +223,11 @@ vim.keymap.set("n", "<leader>sC", "<cmd>FzfLua commands<cr>", { desc = "Commands
 vim.keymap.set("n", "<leader>sd", "<cmd>FzfLua diagnostics_workspace<cr>", { desc = "Diagnostics" })
 vim.keymap.set("n", "<leader>sD", "<cmd>FzfLua diagnostics_document<cr>", { desc = "Buffer Diagnostics" })
 vim.keymap.set("n", "<leader>sg", function()
+  focus_real_window_for_search()
   require("fzf-lua").live_grep({ cwd = require("utils").root() })
 end, { desc = "Grep (Root Dir)" })
 vim.keymap.set("n", "<leader>sG", function()
+  focus_real_window_for_search()
   require("fzf-lua").live_grep({ cwd = vim.uv.cwd() })
 end, { desc = "Grep (cwd)" })
 vim.keymap.set("n", "<leader>sh", "<cmd>FzfLua help_tags<cr>", { desc = "Help Pages" })
