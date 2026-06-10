@@ -80,7 +80,29 @@ require("mini.ai").setup({
     }),
   },
 })
-require("mini.comment").setup({})
+require("mini.comment").setup({
+  options = {
+    -- Use {/* */} when commenting inside JSX elements, // elsewhere
+    custom_commentstring = function(ref_position)
+      local ft = vim.bo.filetype
+      if ft == "typescriptreact" or ft == "javascriptreact" then
+        local node = vim.treesitter.get_node({ pos = { ref_position[1] - 1, ref_position[2] } })
+        while node do
+          local t = node:type()
+          if t == "jsx_element" or t == "jsx_fragment" then
+            return "{/* %s */}"
+          end
+          -- Stop climbing at code boundaries where // is correct
+          if t == "jsx_self_closing_element" or t == "jsx_attribute" or t == "statement_block" then
+            break
+          end
+          node = node:parent()
+        end
+      end
+      return nil
+    end,
+  },
+})
 require("mini.move").setup({})
 require("mini.surround").setup({
   mappings = {

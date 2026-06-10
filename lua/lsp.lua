@@ -18,6 +18,8 @@ local servers = {
   ts_ls = {
     settings = {
       typescript = {
+        implementationsCodeLens = { enabled = true },
+        referencesCodeLens = { enabled = true, showOnAllFunctions = true },
         inlayHints = {
           includeInlayParameterNameHints = "all",
           includeInlayFunctionParameterTypeHints = true,
@@ -28,6 +30,8 @@ local servers = {
         },
       },
       javascript = {
+        implementationsCodeLens = { enabled = true },
+        referencesCodeLens = { enabled = true, showOnAllFunctions = true },
         inlayHints = {
           includeInlayParameterNameHints = "all",
           includeInlayFunctionParameterTypeHints = true,
