@@ -4,6 +4,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+require("vim._core.ui2").enable({}) -- enable ui2 (experimental)
+
 require("options")
 require("plugins")
 require("treesitter")
