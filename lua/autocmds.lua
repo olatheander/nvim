@@ -60,18 +60,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
-
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "Enable Treesitter folding",
-  group = vim.api.nvim_create_augroup("treesitter-folding", { clear = true }),
-  callback = function()
-    local buf = vim.api.nvim_get_current_buf()
-    local lang = vim.bo[buf].filetype
-    local has_parser = pcall(vim.treesitter.get_parser, buf, lang)
-    if has_parser then
-      vim.wo.foldmethod = "expr"
-      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.wo.foldlevel = 99
-    end
-  end,
-})
