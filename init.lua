@@ -15,6 +15,7 @@ require("keymaps")
 require("autocmds")
 require("commands")
 require("lsp")
+require("pyrepel")
 
 -- Diagnostic Config & Keymaps
 -- See :help vim.diagnostic.Opts

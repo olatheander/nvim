@@ -9,6 +9,6 @@ vim.api.nvim_create_user_command("MasonInstallAll", function()
       .. " kotlin-language-server sqls"
       .. " haskell-language-server haskell-debug-adapter"
       .. " stylua prettier prettierd black isort shfmt"
-      .. " shellcheck markdownlint mypy ruff"
+      .. " shellcheck markdownlint mypy ruff jupytext"
   )
 end, { desc = "Install all Mason tools" })

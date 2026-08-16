@@ -8,7 +8,7 @@ vim.pack.add({
   "https://github.com/christoomey/vim-tmux-navigator",
   "https://github.com/nvim-mini/mini.nvim",
   "https://github.com/nvim-mini/mini.icons",
-  "https://www.github.com/lewis6991/gitsigns.nvim",
+  "https://github.com/lewis6991/gitsigns.nvim",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -35,7 +35,7 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-jdtls",
   {
     src = "https://github.com/iamcco/markdown-preview.nvim",
-    build = ":call mkdp#util#install()",
+    build = "cd app && npx --yes yarn install",
   },
   "https://github.com/folke/trouble.nvim",
   "https://github.com/folke/flash.nvim",
@@ -49,6 +49,7 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-dap-python",
   "https://github.com/gbprod/yanky.nvim",
   "https://github.com/chentoast/marks.nvim",
+  "https://github.com/dangooddd/pyrepl.nvim",
 })
 
 require("mini.icons").setup({})
@@ -231,6 +232,7 @@ require("which-key").setup({
     { "<leader>f", group = "file/find" },
     { "<leader>g", group = "git" },
     { "<leader>gh", group = "hunks" },
+    { "<leader>j", group = "PyRepl" },
     { "<leader>p", group = "yank history" },
     { "<leader>s", group = "search" },
     { "<leader>t", group = "test" },
