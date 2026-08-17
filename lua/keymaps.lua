@@ -198,6 +198,12 @@ vim.keymap.set("n", "<leader>fB", "<cmd>FzfLua buffers<cr>", { desc = "Buffers (
 vim.keymap.set("n", "<leader>fc", function()
   require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "Find Config File" })
+vim.keymap.set("n", "<leader>fd", function()
+  require("fzf-lua").files({
+    cwd = vim.fn.expand("%:p:h"),
+    fd_opts = [[--color=never --type f --type l --type d --exclude .git --exclude .jj --max-depth 1]],
+  })
+end, { desc = "Find Files (Current Dir)" })
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find Files (Root Dir)" })
 vim.keymap.set("n", "<leader>fF", function()
   require("fzf-lua").files({ cwd = vim.uv.cwd() })
