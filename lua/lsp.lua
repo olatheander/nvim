@@ -64,6 +64,7 @@ local servers = {
   eslint = {},
   kotlin_language_server = {},
   sqls = {},
+  groovyls = {},
 }
 
 for name, conf in pairs(servers) do
