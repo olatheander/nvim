@@ -186,10 +186,6 @@ local focus_real_window_for_search = function()
 end
 
 vim.keymap.set("n", "<leader>,", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", { desc = "Switch Buffer" })
--- Grep & general
-vim.keymap.set("n", "<leader>/", function()
-  require("fzf-lua").live_grep({ cwd = require("utils").root() })
-end, { desc = "Grep (Root Dir)" })
 vim.keymap.set("n", "<leader>:", "<cmd>FzfLua command_history<cr>", { desc = "Command History" })
 vim.keymap.set("n", "<leader><space>", "<cmd>FzfLua files<cr>", { desc = "Find Files (Root Dir)" })
 -- find
